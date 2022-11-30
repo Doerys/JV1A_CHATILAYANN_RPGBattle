@@ -1,0 +1,222 @@
+@font-face {
+  font-family: 'Pixellari';
+  src: url("fonts/Pixellari.ttf") format ('truetype');
+}
+body
+{
+  display: flex;
+  flex-direction: column;
+  border: 4px solid black;
+}
+
+h2, h3
+{
+  font-family: 'Pixellari', Impact, Arial, sans-serif;
+}
+
+vies
+{
+  display: flex;
+  justify-content: space-between;
+  border: 4px solid magenta;
+}
+
+vieHeros
+{
+  display: flex;
+  justify-content: space-between;
+}
+
+vieHero1 h3
+{
+  display: flex;
+  flex-direction: row;
+  font: 2em, bold, capitalize, blue;
+  padding: 3px 3px 3px 3px;
+  margin: 3px 3px 3px 3px;
+  background-color: yellowgreen;
+  border: 2px solid black;
+  border-radius: 6px;
+}
+
+vieHero2 h3
+{
+  display: flex;
+  flex-direction: row;
+  font: 2em, bold, capitalize, blue;
+  padding: 3px 3px 3px 3px;
+  margin: 3px 3px 3px 3px;
+  background-color: yellowgreen;
+  border: 2px solid black;
+  border-radius: 6px;
+}
+
+vieMonstre1 h3
+{
+  display: flex;
+  font: 2em, bold, capitalize;
+  padding: 3px 3px 3px 3px;
+  margin: 3px 3px 3px 3px;
+  background-color: red;
+  border: 2px solid black;
+  border-radius: 6px;
+}
+
+scene
+{
+  display: flex;
+  flex-direction: column;
+  border: 4px solid purple;
+}
+
+combat
+{
+  width : 50%;
+  margin-left: 25%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 4px solid green;
+}
+
+heros
+{
+  display: flex;
+  flex-direction: column;
+}
+
+monstres
+{
+  display: flex;
+  flex-direction: column;
+}
+
+heros h2
+{
+    background-color: yellowgreen;
+    text-align: center;
+    font: 2em, bold, capitalize, blue;
+    padding: 5px 5px 5px 5px;
+    border: 3px solid black;
+    border-radius: 5px;
+}
+
+monstres h2
+{
+    background-color: red;
+    text-align: center;
+    font: 2em, bold, capitalize;
+    padding: 5px 5px 5px 5px;
+    border: 3px solid black;
+    border-radius: 5px;
+}
+
+spriteHero1{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid black;
+}
+
+spriteHero2{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid black;
+}
+
+spriteHero3{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid black;
+}
+
+spriteHero4{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid black;
+}
+
+spriteMonstre1{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid black;
+}
+
+spriteMonstre2{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid black;
+}
+
+spriteMonstre3{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid black;
+}
+
+UI
+{
+  align-self: center;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 3px solid yellow;
+  width: 50%;
+}
+
+skillsHero
+{
+  display: flex;
+  justify-content: space-between;
+}
+
+#boutonAttaque
+{
+  display: inline-block;
+  justify-content: center;
+  background-color: red;
+  font: 2em, bold, capitalize;
+  padding: 5px 5px 5px 5px;
+  border: 3px solid pink;
+  border-radius: 5px;
+}
+
+#boutonDefense
+{
+  display: inline-block;
+  justify-content: middle;
+  background-color: green;
+  font: 2em, bold, capitalize;
+  padding: 5px 5px 5px 5px;
+  border: 3px solid pink;
+  border-radius: 5px;
+}
+
+#boutonPouvoir
+{
+  display: inline-block;
+  justify-content: middle;
+  background-color: blue;
+  font: 2em, bold, capitalize;
+  padding: 5px 5px 5px 5px;
+  border: 3px solid pink;
+  border-radius: 5px;
+}
+
+boiteDialogue
+{
+  text-align: center;
+  align-self: center;
+  border: 3px solid black;
+  background-color: grey;
+  padding: 5px 5px 5px 5px;
+  margin: 5px 5px 5px 5px;
+  border-radius: 5px;
+  width: 400px;
+}
