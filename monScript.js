@@ -9,49 +9,6 @@ contenuBoiteDialogue = document.getElementById("contenuBoiteDialogue");
 animationHero1 = document.getElementById("animationHero1");
 animationMonstre1 = document.getElementById("animationMonstre1");
 
-tourCombat = 1;
-
-heros = [Archer, Mage, Guerrier, Mousquetaire];
-monstres = [Spectre, Sanglier, Geant];
-
-//Organisation des tours en combat
-
-if (tourCombat == 1){
-    personnageAction = heros[0];
-}
-
-if (tourCombat == 2){
-    personnageAction = heros[1];
-}
-
-if (tourCombat == 3){
-    personnageAction = heros[2];
-}
-
-if (tourCombat == 4){
-    personnageAction = heros[3];
-}
-
-if (tourCombat == 5){
-    monstreAction = monstres[0];
-}
-
-if (tourCombat == 6){
-    monstreAction = monstres[1];
-}
-
-if (tourCombat == 7){
-    monstreAction = monstres[2];
-}
-
-
-//Variables
-
-//heros = [Archer, Mage, Guerrier, Mousquetaire];
-//monstres = [Spectre, Sanglier, Geant];
- 
-//Attaque du Joueur
-
 boutonAttaque.onclick = function() {
 
     contenuBoiteDialogue.innerHTML = "L'archer tire !";
