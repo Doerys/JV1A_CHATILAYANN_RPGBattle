@@ -28,6 +28,13 @@ function attack(characterAgressor, characterVictim, characterVictimLife, damageA
 
 }
 
+function KillCharacter(character){
+    // replace character image with character dead one and change the mouse cursor when hovering
+    characterImage = document.getElementById(character[ID]).getElementsByTagName("img")[1];
+    characterImage.src = "Assets/Characters/character_dead.png";
+    characterImage.style.cursor = "not-allowed";
+}
+
 
 function playerAttack(personnageAttack, monstreAttacked) {
 
@@ -128,3 +135,18 @@ tourCombat = 1;
 
 heros = [Archer, Mage, Guerrier, Mousquetaire];
 monstres = [Spectre, Sanglier, Geant];
+
+
+animationHero1 = document.getElementById("animationHero1");
+animationMonstre1 = document.getElementById("animationMonstre1");
+
+
+
+function damageRandom(Dmg, message){
+
+    Dmg = Math.floor(Math.random() * 10);
+    message.innerHTML = "Il y a", Dmg, "dégâts.";
+    return Dmg;
+    }
+
+
