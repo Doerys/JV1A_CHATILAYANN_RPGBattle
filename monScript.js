@@ -11,6 +11,14 @@ function attack(DmgAttack, victimLife) {
     victimLife.innerHTML = parseInt(victimLife.innerHTML) - DmgAttack;
     }
 
+function removeButtons(buttons){
+    buttons.style.display = 'none';
+}
+
+function showButtons(buttons){
+    buttons.style.display = 'block';
+}
+
 // affiche le message pour l'attaque
 
 function infosAttack(SlayerName, VictimName, DmgAttack, message){
@@ -44,19 +52,38 @@ function tourSupp(turnAttack){
     return turnAttack;
 }
 
+
+function checkNouveauTour(tour){
+    if (tour == 6){
+        turn = bouclerTour(turn, contenuBoiteDialogue);
+
+        setTimeout(function() {
+            messageNouveauTour(turn, contenuBoiteDialogue, nomActiveChara);
+        }, 3500);
+    }
+    if(tour < 6){   
+        messageNouveauTour(turn, contenuBoiteDialogue, nomActiveChara);
+    }
+}
+
+function messageNouveauTour(tour, message, persoActif){
+    message.innerHTML = "Nous sommes au tour " + tour + ". C'est au tour de " + persoActif + " d'attaquer.";
+}
+
+
 // faire boucler le decompte des tours
 
 function bouclerTour(decompteTour, message){
     if (decompteTour == 6){
         decompteTour = 1;
         message.innerHTML = "Nouveau tour !";
-    }
+    }   
     return decompteTour;
 }
 
 // savoir quel perso joue en fonction du tour
 
-function choseNameCharacter(message, tourCombat) {
+function choseNameCharacter(tourCombat) {
 
     if (tourCombat == 1){
         persoActif = document.getElementById("nomHero1").innerHTML;
@@ -74,7 +101,9 @@ function choseNameCharacter(message, tourCombat) {
         persoActif = document.getElementById("nomHero4").innerHTML;
     }
 
-    message.innerHTML = "Nous sommes au tour " + turn + ". C'est au tour de " + persoActif + " d'attaquer.";
+    else if (tourCombat == 5){
+        persoActif = document.getElementById("nomMonstre1").innerHTML;
+    }
 
     return persoActif;
 }
@@ -83,13 +112,28 @@ function choseNameCharacter(message, tourCombat) {
 
 function turnMonster(tour){
     if (tour > 4){
-        
         damage = getRandomInt(8);
         attack(damage, vieHero1);
         infosAttack(nomMonstre, nomActiveChara, damage, contenuBoiteDialogue);
         animationAttack(nomMonstre, animationMonstre, nomActiveChara, animationHero);
-        tourSupp(turn);
+        turn = tourSupp(turn);
     }
+    return tour;
+}
+
+function turnPlayer(tour){
+    if(tour <= 4){
+        damage = getRandomInt(10);
+
+        attack(damage, vieMonstre1);
+
+        infosAttack(nomActiveChara, nomMonstre, damage, contenuBoiteDialogue);
+
+        animationAttack(nomActiveChara, animationHero, nomMonstre, animationMonstre);
+        checkDeathMonster(contenuBoiteDialogue,vieMonstre1);
+        turn = tourSupp(turn);
+    }
+    return tour;
 }
 
 // Choix du sprite sur la scene
@@ -128,6 +172,7 @@ function checkDeathCharacter(message, hpCharacter){
 
 //Elements de HTML
 
+boutons = document.getElementsById("boutonDisparu");
 boutonAttaque = document.getElementById("boutonAttaque");
 boutonDefense = document.getElementById("boutonDefense");
 boutonPouvoir = document.getElementById("boutonPouvoir");
@@ -137,35 +182,34 @@ contenuBoiteDialogue = document.getElementById("contenuBoiteDialogue");
 animationMonstre = document.getElementById("animationMonstre1");
 nomMonstre = document.getElementById("nomMonstre1").innerHTML;
 
-turn = 4;
+turn = 1;
 
-nomActiveChara = choseNameCharacter(contenuBoiteDialogue, turn);
+nomActiveChara = choseNameCharacter(turn);
+messageNouveauTour(turn, contenuBoiteDialogue, nomActiveChara);
 
 animationHero = choseSprite(nomActiveChara);
 
+removeButtons(boutons)
+
 boutonAttaque.onclick = function() {
 
-    damage = getRandomInt(10);
+    removeButtons(boutons);
 
-    attack(damage, vieMonstre1);
-
-    infosAttack(nomActiveChara, nomMonstre, damage, contenuBoiteDialogue);
-
-    animationAttack(nomActiveChara, animationHero, nomMonstre, animationMonstre);
-
-    checkDeathMonster(contenuBoiteDialogue,vieMonstre1);
-
-    turn = tourSupp(turn);
+    turnPlayer(turn);
 
     setTimeout(function() {
-        turn = bouclerTour(turn, contenuBoiteDialogue);
-
         turnMonster(turn);
 
-    }, 1000);
+        turn = bouclerTour(turn, contenuBoiteDialogue);
+
+    }, 1500);
 
     setTimeout(function() {
-        nomActiveChara = choseNameCharacter(contenuBoiteDialogue, turn);
+        nomActiveChara = choseNameCharacter(turn);
         animationHero = choseSprite(nomActiveChara);
-    }, 2000);
+        checkNouveauTour(turn);
+        showButtons(boutons);
+    }, 3000);
 }
+
+

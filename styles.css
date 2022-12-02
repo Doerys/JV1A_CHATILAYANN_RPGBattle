@@ -156,7 +156,7 @@ UI
   width: 50%;
 }
 
-skillsHero
+#skillsHero
 {
   display: flex;
   justify-content: space-between;
@@ -164,7 +164,7 @@ skillsHero
 
 .bouton
 {
-  display: inline-block;
+  display: flex;
   justify-content: center;
   font: 2em, bold, capitalize;
   padding: 5px 5px 5px 5px;
