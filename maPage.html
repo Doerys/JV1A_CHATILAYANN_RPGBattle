@@ -10,102 +10,113 @@
         <scene>
             <vies>
                 <vieMonstres>
-                    <vieMonstre1>
+                    <div class = "vieMonstre">
                         <h3>
-                            Spectre de : 
+                            Spectre : 
                             <div id = vieMonstre1>20</div>
                             /20
                         </h3>
-                    </vieMonstre1>
+                    </div>
+
+                    <div class = "vieMonstre">
+                        <h3>
+                            Sanglier : 
+                            <div id = vieMonstre2>20</div>
+                            /20
+                        </h3>
+                    </div>
                 </vieMonstres>
                 <vieHeros>
-                    <vieHero1>
+                    <div class = "vieHero">
                         <h3>
                             Archer : 
                             <div id = vieHero1>50</div>
                             /50
                         </h3>
-                    </vieHero1>
-                    <vieHero2>
+                    </div>
+                    <div class = "vieHero">
                         <h3>
                             Mage : 
                             <div id = vieHero1>50</div>
                             /50
                         </h3>
-                    </vieHero2>
+                    </div>
                 </vieHeros>
             </vies>
 
             <combat>
                 <monstres>
-                    <spriteMonstre1>
+                    <div class = "spriteMonstre">
                         <h2><div id = "nomMonstre1">Spectre</div></h2>
                         <img id = "animationMonstre1" src="images/idleSpectre.gif" alt= "Monstre"/>
-                    </spriteMonstre1>
-                    <spriteMonstre2>
-                        <h2>Sanglier</h2>
+                    </div>
+                    <div class = "spriteMonstre">
+                        <h2><div id = "nomMonstre2">Sanglier</div></h2>
                         <img id = "animationMonstre2" src="images/idleMonstre2.gif" alt= "Monstre"/>
-                    </spriteMonstre2>
+                    </div>
                     <!--
                     
-                    <spriteMonstre3>
+                    <div class = "spriteMonstre">
                         <h2>Geant</h2>
                         <img id = "animationMonstre3" src="images/idleMonstre3.gif" alt= "Monstre"/>
-                    </spriteMonstre3> -->
+                    </div> -->
                 </monstres>
 
                 <heros>
-                    <spriteHero1>
+                    <div class = "spriteHero">
                         <h2><div id = "nomHero1">Archer</div></h2>
                         <img id = "animationHero1" src="images/idleArcher.gif" alt= "Archer"/>
-                    </spriteHero1>
-                    <spriteHero2>
-                        <h2>Mage</h2>
+                    </div>
+                    <div class = "spriteHero">
+                        <h2><div id = "nomHero2">Mage</div></h2>
                         <img id = "animationHero2" src="images/idlePersonnage2.gif" alt= "Mage"/>
-                    </spriteHero2>
+                    </div>
 
                     <!--
 
-                    <spriteHero3>
+                    <div class = "spriteHero">
                         <h2>Guerrier</h2>
                         <img id = "animationHero3" src="images/idlePersonnage3.gif" alt= "Personnage"/>
-                    </spriteHero3>
-                    <spriteHero4>
+                    </div>
+                    <div class = "spriteHero">
                         <h2>Mousquetaire</h2>
                         <img id = "animationHero4" src="images/idlePersonnage4.gif" alt= "Personnage"/>
-                    </spriteHero4> -->
+                    </div> -->
                 </heros>
             </combat>
 
+            <UI>
+
+                <skillsHero>
+    
+                    <div class = "bouton" id = "boutonAttaque">
+                        <h3>
+                            Attaque
+                        </h3>
+                    </div>
+    
+                    <div class = "bouton" id = "boutonDefense">
+                        <h3>
+                            Défense
+                        </h3>
+                    </div>
+    
+                    <div class = "bouton" id = "boutonPouvoir">
+                        <h3>
+                            Pouvoir
+                        </h3>
+                    </div>
+                </skillsHero>
+    
+                <boiteDialogue>
+                    <h3>
+                        <div id = "contenuBoiteDialogue">Le jeu commence !</div>
+                    </h3>
+                </boiteDialogue>
+            </UI>
+
         </scene>
         
-        <UI>
 
-            <skillsHero>
-
-                <div id = "boutonAttaque">
-                    <h3>
-                        Attaque
-                    </h3>
-                </div>
-
-                <div id = "boutonDefense">
-                    <h3>
-                        Défense
-                    </h3>
-                </div>
-
-                <div id = "boutonPouvoir">
-                    <h3>
-                        Pouvoir
-                    </h3>
-                </div>
-            </skillsHero>
-
-            <boiteDialogue>
-                <h3>
-                    <div id = "contenuBoiteDialogue">Le jeu commence !</div>
-                </h3>
-            </boiteDialogue>
     </body>
 </html>

@@ -1,4 +1,4 @@
-// fonction degats randoms
+// fonction degats randoms - ne fonctionne pas
 
 function damageRandom(damageCharacterRandom){
 
@@ -6,7 +6,7 @@ function damageRandom(damageCharacterRandom){
     return damageCharacterRandom
 }
 
-//fonction animations et vie retiree lors d une attaque 
+//fonction animations et vie retiree lors d une attaque - ne fonctionne pas
 
 function attack(characterAgressor, characterVictim, characterVictimLife, damageAttack, dialogueAttack, animationCharacterAgressor, animationCharacterVictim){
 
@@ -27,6 +27,9 @@ function attack(characterAgressor, characterVictim, characterVictimLife, damageA
         animationCharacterVictim.setAttribute("src", "images/idle",characterVictim,".gif");}, 1350);
 
 }
+
+
+// Fonction donnée par Allan - je ne comprend pas
 
 function KillCharacter(character){
     // replace character image with character dead one and change the mouse cursor when hovering
@@ -141,12 +144,4 @@ animationHero1 = document.getElementById("animationHero1");
 animationMonstre1 = document.getElementById("animationMonstre1");
 
 
-
-function damageRandom(Dmg, message){
-
-    Dmg = Math.floor(Math.random() * 10);
-    message.innerHTML = "Il y a", Dmg, "dégâts.";
-    return Dmg;
-    }
-
-
+message.innerHTML = SlayerName + "attaque !" + VictimName + "reçoit " + DmgAttack + " dégâts !";

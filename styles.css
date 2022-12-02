@@ -5,8 +5,21 @@
 body
 {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   border: 4px solid black;
+}
+
+scene
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 1703px;
+  height: 959px;
+  background-image: url(images/backgroundScene3.png);
+  border: 4px solid purple;
 }
 
 h2, h3
@@ -17,7 +30,7 @@ h2, h3
 vies
 {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   border: 4px solid magenta;
 }
 
@@ -25,9 +38,10 @@ vieHeros
 {
   display: flex;
   justify-content: space-between;
+  border: 4px solid yellow;
 }
 
-vieHero1 h3
+.vieHero h3
 {
   display: flex;
   flex-direction: row;
@@ -39,34 +53,23 @@ vieHero1 h3
   border-radius: 6px;
 }
 
-vieHero2 h3
+vieMonstres
+{
+  display: flex;
+  justify-content: space-between;
+  border: 4px solid yellow;
+}
+
+.vieMonstre h3
 {
   display: flex;
   flex-direction: row;
-  font: 2em, bold, capitalize, blue;
-  padding: 3px 3px 3px 3px;
-  margin: 3px 3px 3px 3px;
-  background-color: yellowgreen;
-  border: 2px solid black;
-  border-radius: 6px;
-}
-
-vieMonstre1 h3
-{
-  display: flex;
   font: 2em, bold, capitalize;
   padding: 3px 3px 3px 3px;
   margin: 3px 3px 3px 3px;
   background-color: red;
   border: 2px solid black;
   border-radius: 6px;
-}
-
-scene
-{
-  display: flex;
-  flex-direction: column;
-  border: 4px solid purple;
 }
 
 combat
@@ -111,49 +114,14 @@ monstres h2
     border-radius: 5px;
 }
 
-spriteHero1{
+.spriteHero{
   display: flex;
   flex-direction: column;
   justify-content: center;
   border: 2px solid black;
 }
 
-spriteHero2{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: 2px solid black;
-}
-
-spriteHero3{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: 2px solid black;
-}
-
-spriteHero4{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: 2px solid black;
-}
-
-spriteMonstre1{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: 2px solid black;
-}
-
-spriteMonstre2{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: 2px solid black;
-}
-
-spriteMonstre3{
+.spriteMonstre{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -176,37 +144,29 @@ skillsHero
   justify-content: space-between;
 }
 
-#boutonAttaque
+.bouton
 {
   display: inline-block;
   justify-content: center;
-  background-color: red;
   font: 2em, bold, capitalize;
   padding: 5px 5px 5px 5px;
   border: 3px solid pink;
   border-radius: 5px;
+}
+
+#boutonAttaque
+{
+  background-color: red;
 }
 
 #boutonDefense
 {
-  display: inline-block;
-  justify-content: middle;
   background-color: green;
-  font: 2em, bold, capitalize;
-  padding: 5px 5px 5px 5px;
-  border: 3px solid pink;
-  border-radius: 5px;
 }
 
 #boutonPouvoir
 {
-  display: inline-block;
-  justify-content: middle;
   background-color: blue;
-  font: 2em, bold, capitalize;
-  padding: 5px 5px 5px 5px;
-  border: 3px solid pink;
-  border-radius: 5px;
 }
 
 boiteDialogue
