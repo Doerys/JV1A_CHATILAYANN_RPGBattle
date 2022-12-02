@@ -9,7 +9,7 @@
 
     // COMBAT - Soustraction vie 
     function attack(DmgAttack, victimLife) {
-        victimLife = parseInt(victimLife) - DmgAttack;
+        victimLife.innerHTML = parseInt(victimLife.innerHTML) - DmgAttack;
     }
 
     // COMBAT - message boite dialogue
@@ -93,7 +93,7 @@
 
     // MISE EN PLACE - barre du vie du perso
     function choseLife(perso){
-        barLife = document.getElementById("vie"+perso).innerHTML;
+        barLife = document.getElementById("vie"+perso);
         console.log(barLife);
         return barLife;
     }
