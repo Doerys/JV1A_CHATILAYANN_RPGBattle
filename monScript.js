@@ -1,31 +1,50 @@
-// fonction pour calculer les dgts
+// calculer les dgts en random
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
 
-
-//fonction vie retiree lors d une attaque 
+// vie retiree lors d une attaque 
 
 function attack(DmgAttack, victimLife) {
 
     victimLife.innerHTML = parseInt(victimLife.innerHTML) - DmgAttack;
     }
 
-// permet d'incrementer un tour après une attaque
+// affiche le message pour l'attaque
+
+function infosAttack(SlayerName, VictimName, DmgAttack, message){
+    message.innerHTML = SlayerName + " attaque ! " + VictimName + " reçoit " + DmgAttack + " dégâts !";
+}
+
+// Declencher les animations attaque
+
+function animationAttack(nameSlayer, animSlayer, nameVictim, animVictim){
+    
+    //hero attack
+
+    animSlayer.setAttribute("src", "images/attack"+nameSlayer+".gif");
+
+    //hero iddle et monstre frappe
+
+    setTimeout(function() {
+        animSlayer.setAttribute("src", "images/idle"+nameSlayer+".gif");
+        animVictim.setAttribute("src", "images/hit"+nameVictim+".gif");}, 850);
+        
+    //animation monstre Idle
+
+    setTimeout(function() {
+        animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");}, 1350);
+}
+
+// incrementer un tour après une attaque
 
 function tourSupp(turnAttack){
     turnAttack += 1;
     return turnAttack;
 }
 
-// permet de faire boucler le decompte des tours
-
-function turnMonster(tour, damageHero, hpHero){
-    if (tour < 4){
-        hpHero.innerHTML = parseInt(hpHero.innerHTML) - damageHero;
-    }
-}
+// faire boucler le decompte des tours
 
 function bouclerTour(decompteTour, message){
     if (decompteTour == 6){
@@ -35,15 +54,9 @@ function bouclerTour(decompteTour, message){
     return decompteTour;
 }
 
-// affiche le message pour l'attaque
+// savoir quel perso joue en fonction du tour
 
-function infosAttack(SlayerName, VictimName, DmgAttack, message){
-    message.innerHTML = SlayerName + " attaque ! " + VictimName + " reçoit " + DmgAttack + " dégâts !";
-}
-
-//fonction permettant de savoir quel perso joue
-
-function choseCharacter(message, tourCombat) {
+function choseNameCharacter(message, tourCombat) {
 
     if (tourCombat == 1){
         persoActif = document.getElementById("nomHero1").innerHTML;
@@ -61,14 +74,33 @@ function choseCharacter(message, tourCombat) {
         persoActif = document.getElementById("nomHero4").innerHTML;
     }
 
-    else if (tourCombat == 5){
-        persoActif = document.getElementById("nomMonstre1").innerHTML;
-    }
-
     message.innerHTML = "Nous sommes au tour " + turn + ". C'est au tour de " + persoActif + " d'attaquer.";
 
     return persoActif;
 }
+
+// checker si le monstre doit risposter
+
+function turnMonster(tour){
+    if (tour > 4){
+        
+        damage = getRandomInt(8);
+        attack(damage, vieHero1);
+        infosAttack(nomMonstre, nomActiveChara, damage, contenuBoiteDialogue);
+        animationAttack(nomMonstre, animationMonstre, nomActiveChara, animationHero);
+        tourSupp(turn);
+    }
+}
+
+// Choix du sprite sur la scene
+
+function choseSprite(persoTour){
+    spriteAnimation = document.getElementById("animation"+persoTour);
+
+    return spriteAnimation;
+}
+
+// verifie si le monstre est mort
 
 function checkDeathMonster(message, hpmonster) {
     hp = hpmonster.innerHTML;
@@ -81,6 +113,19 @@ function checkDeathMonster(message, hpmonster) {
     }
 }
 
+// verifie si un perso est mort
+
+function checkDeathCharacter(message, hpCharacter){
+    hp = hpCharacter.innerHTML;
+    if (hp <= 0) {
+        hpCharacter.innerHTML = 0;
+        message.innerHTML = "Le héros est vaincu. Zut.";
+        console.log("hero mort");
+    } else {
+        console.log("hero vivant");
+    }
+}
+
 //Elements de HTML
 
 boutonAttaque = document.getElementById("boutonAttaque");
@@ -89,13 +134,14 @@ boutonPouvoir = document.getElementById("boutonPouvoir");
 vieMonstre1 = document.getElementById("vieMonstre1");
 vieHero1 = document.getElementById("vieHero1");
 contenuBoiteDialogue = document.getElementById("contenuBoiteDialogue");
-animationHero1 = document.getElementById("animationHero1");
-animationMonstre1 = document.getElementById("animationMonstre1");
+animationMonstre = document.getElementById("animationMonstre1");
 nomMonstre = document.getElementById("nomMonstre1").innerHTML;
 
-turn = 1;
+turn = 4;
 
-activeCharac = choseCharacter(contenuBoiteDialogue, turn);
+nomActiveChara = choseNameCharacter(contenuBoiteDialogue, turn);
+
+animationHero = choseSprite(nomActiveChara);
 
 boutonAttaque.onclick = function() {
 
@@ -103,7 +149,9 @@ boutonAttaque.onclick = function() {
 
     attack(damage, vieMonstre1);
 
-    infosAttack(activeCharac, nomMonstre, damage, contenuBoiteDialogue);
+    infosAttack(nomActiveChara, nomMonstre, damage, contenuBoiteDialogue);
+
+    animationAttack(nomActiveChara, animationHero, nomMonstre, animationMonstre);
 
     checkDeathMonster(contenuBoiteDialogue,vieMonstre1);
 
@@ -112,24 +160,12 @@ boutonAttaque.onclick = function() {
     setTimeout(function() {
         turn = bouclerTour(turn, contenuBoiteDialogue);
 
-        damage = getRandomInt(10)
+        turnMonster(turn);
 
-        turnMonster(turn, damage, vieHero1);
-
-
-    }, 500);
+    }, 1000);
 
     setTimeout(function() {
-        activeCharac = choseCharacter(contenuBoiteDialogue, turn);
-    }, 1000);
-    
-    
-
-    //Mort du Joueur
-
-    if (vieHero1.innerHTML <= 0) {
-        vieHero1.innerHTML = 0;
-        contenuBoiteDialogue.innerHTML = "Tu es vaincu. Tu as perdu, dommage.";
-        }
-    }
-
+        nomActiveChara = choseNameCharacter(contenuBoiteDialogue, turn);
+        animationHero = choseSprite(nomActiveChara);
+    }, 2000);
+}
