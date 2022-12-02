@@ -49,6 +49,7 @@ vieHero1 = document.getElementById("vieHero1");
 contenuBoiteDialogue = document.getElementById("contenuBoiteDialogue");
 animationHero1 = document.getElementById("animationHero1");
 animationMonstre1 = document.getElementById("animationMonstre1");
+nomMonstre = document.getElementById("nomMonstre1").innerHTML;
 
 activeCharac = "Personne";
 
