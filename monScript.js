@@ -11,12 +11,16 @@ function attack(DmgAttack, victimLife) {
     victimLife.innerHTML = parseInt(victimLife.innerHTML) - DmgAttack;
     }
 
-function removeButtons(buttons){
-    buttons.style.display = 'none';
+function removeButtons(buttonA, buttonB, buttonC){
+    buttonA.style.display = 'none';
+    buttonB.style.display = 'none';
+    buttonC.style.display = 'none';
 }
 
-function showButtons(buttons){
-    buttons.style.display = 'block';
+function showButtons(buttonA, buttonB, buttonC){
+    buttonA.style.display = 'block';
+    buttonB.style.display = 'block';
+    buttonC.style.display = 'block';
 }
 
 // affiche le message pour l'attaque
@@ -172,7 +176,6 @@ function checkDeathCharacter(message, hpCharacter){
 
 //Elements de HTML
 
-boutons = document.getElementsById("boutonDisparu");
 boutonAttaque = document.getElementById("boutonAttaque");
 boutonDefense = document.getElementById("boutonDefense");
 boutonPouvoir = document.getElementById("boutonPouvoir");
@@ -189,11 +192,9 @@ messageNouveauTour(turn, contenuBoiteDialogue, nomActiveChara);
 
 animationHero = choseSprite(nomActiveChara);
 
-removeButtons(boutons)
-
 boutonAttaque.onclick = function() {
 
-    removeButtons(boutons);
+    removeButtons(boutonAttaque, boutonDefense, boutonPouvoir);
 
     turnPlayer(turn);
 
@@ -208,8 +209,8 @@ boutonAttaque.onclick = function() {
         nomActiveChara = choseNameCharacter(turn);
         animationHero = choseSprite(nomActiveChara);
         checkNouveauTour(turn);
-        showButtons(boutons);
+        showButtons(boutonAttaque, boutonDefense, boutonPouvoir);
     }, 3000);
 }
 
-
+//à régler : le fait que la boite de dialogue ne dise pas que le monstre riposte, elle passe direct au nouveau tour
