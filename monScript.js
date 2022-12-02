@@ -5,38 +5,40 @@ function getRandomInt(max) {
 
 //fonction animations et vie retiree lors d une attaque 
 
-function attack(DmgAttack, VictimName, SlayerName, victimLife, message, turnAttack) {
+function attack(DmgAttack, VictimName, SlayerName, victimLife, message) {
 
     victimLife.innerHTML = parseInt(victimLife.innerHTML) - DmgAttack;
     message.innerHTML = SlayerName + " attaque ! " + VictimName + " reçoit " + DmgAttack + " dégâts !";
     turnAttack += 1;
-    return turn;
+    return turnAttack;
     }
 
 //fonction permettant de savoir quel perso joue
 
-function choseCharacter(tourCombat, persoActif) {
-    if (tourCombat > 4){
-        tourCombat = 1
-    }
+function choseCharacter(message, tourCombat) {
     
     if (tourCombat == 1){
         persoActif = document.getElementById("nomHero1").innerHTML;
     }
     
-    if (tourCombat == 2){
+    else if (tourCombat == 2){
         persoActif = document.getElementById("nomHero2").innerHTML;
     }
-    
-    if (tourCombat == 3){
-        persoActif = document.getElementById("nomMonstre1").innerHTML;
-    }
-    
-    if (tourCombat == 4){
-        persoActif = document.getElementById("nomMonstre2").innerHTML;
-    }
+
+    message.innerHTML = "Nous sommes au tour " + turn + ". C'est au tour de " + persoActif + " d'attaquer.";
 
     return persoActif;
+}
+
+function checkDeathMonster(message, hpmonster) {
+    hp = hpmonster.innerHTML;
+    if (hp <= 0) {
+        hpmonster.innerHTML = 0;
+        message.innerHTML = "Monstre mort";
+        console.log("monstre mort");
+    } else {
+        console.log("monstre vivant");
+    }
 }
 
 //Elements de HTML
@@ -51,29 +53,23 @@ animationHero1 = document.getElementById("animationHero1");
 animationMonstre1 = document.getElementById("animationMonstre1");
 nomMonstre = document.getElementById("nomMonstre1").innerHTML;
 
-activeCharac = "Personne";
-
 turn = 1;
 
-choseCharacter(turn, activeCharac);
+activeCharac = choseCharacter(contenuBoiteDialogue, turn);
 
 boutonAttaque.onclick = function() {
 
     damage = getRandomInt(10);
 
-    attack(damage, nomMonstre, activeCharac, vieMonstre1, contenuBoiteDialogue, turn);
+    //turn = attack(damage, nomMonstre, activeCharac, vieMonstre1, contenuBoiteDialogue, turn);
+
+    checkDeathMonster(contenuBoiteDialogue,vieMonstre1);
+
+    //Mort du Joueur
+
+    if (vieHero1.innerHTML <= 0) {
+        vieHero1.innerHTML = 0;
+        contenuBoiteDialogue.innerHTML = "Tu es vaincu. Tu as perdu, dommage.";
+        }
     }
 
-//Mort du monstre
-
-if (vieMonstre1.innerHTML <= 0) {
-    vieMonstre1.innerHTML = 0;
-    contenuBoiteDialogue.innerHTML = "Le monstre est vaincu. Tu as gagné ! Bravo.";
-    }
-
-//Mort du Joueur
-
-if (vieHero1.innerHTML <= 0) {
-    vieHero1.innerHTML = 0;
-    contenuBoiteDialogue.innerHTML = "Tu es vaincu. Tu as perdu, dommage.";
-    }

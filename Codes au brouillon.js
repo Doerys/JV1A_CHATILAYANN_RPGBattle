@@ -48,8 +48,9 @@ function playerAttack(personnageAttack, monstreAttacked) {
     //dégâts attaque
 
     setTimeout(function() {
+        persoActif
         vieMonstre1.innerHTML = parseInt(vieMonstre1.innerHTML) - damagesPersonnage;
-        animationHero1.setAttribute("src", "images/idlePersonnage1.gif");
+        animationHero1.setAttribute("src", "images/idle", persoActif + ".gif");
         contenuBoiteDialogue.innerHTML = "Le monstre reçoit", damagesPersonnage, "dégâts !";
         animationMonstre1.setAttribute("src", "images/hitMonstre1.gif");}, 850);
         
@@ -76,7 +77,8 @@ function playerAttack(personnageAttack, monstreAttacked) {
     //retour à la normale
 
     setTimeout(function() {
-        animationHero1.setAttribute("src", "images/idlePersonnage1.gif");}, 3950);
+        animationHero1.setAttribute("src", "images/idlePersonnage1.gif");
+    }, 3950);
 
     tour += 1;
             
@@ -145,3 +147,16 @@ animationMonstre1 = document.getElementById("animationMonstre1");
 
 
 message.innerHTML = SlayerName + "attaque !" + VictimName + "reçoit " + DmgAttack + " dégâts !";
+
+
+if (tourCombat > 4){
+    tourCombat = 1;
+}
+    
+else if (tourCombat == 3){
+    persoActif = document.getElementById("nomMonstre1");
+}
+
+else if (tourCombat == 4){
+    persoActif = document.getElementById("nomMonstre2");
+}
