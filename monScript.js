@@ -250,6 +250,7 @@
         
         // verification si monstre mort
         checkDeathMonster(contenuBoiteDialogue,vieVictim);
+        checkAliveCharacter(tour, hpCharacter)
     }
 
 // FONCTIONS DE MORT
@@ -259,6 +260,7 @@
         hp = hpmonster.innerHTML;
         if (hp <= 0) {
             hpmonster.innerHTML = 0;
+            spriteDisparait(animationVictim, hitCharacter);
             message.innerHTML = "Le monstre est vaincu. Tu as gagné ! Bravo.";
             console.log("monstre mort");
         } else {
@@ -271,6 +273,7 @@
         hp = hpCharacter.innerHTML;
         if (hp <= 0) {
             hpCharacter.innerHTML = 0;
+            spriteDisparait(animationVictim, hitCharacter);
             message.innerHTML = "Le héros est vaincu. Zut.";
             console.log("hero mort");
         } else {
@@ -278,6 +281,20 @@
         }
     }
 
+    function spriteDisparait(animationCharacter, nomCharacter){
+        animationCharacter.style.visibility = 'hidden';
+        nomCharacter.style.visibility = 'hidden';
+    }
+
+
+// FONCTIONS CHECK DE VIE
+
+    function checkAliveCharacter(tour, hpCharacter){
+        if (hpCharacter == 0){
+            tour += 1;
+        }
+        return tour;
+    }
 
 // ------------------------------------- DEBUT DU JEU -------------------------------------
 
