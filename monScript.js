@@ -94,6 +94,7 @@
     // MISE EN PLACE - barre du vie du perso
     function choseLife(perso){
         barLife = document.getElementById("vie"+perso).innerHTML;
+        console.log(barLife);
         return barLife;
     }
 
