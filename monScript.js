@@ -189,7 +189,7 @@
 
     // choix du joueur a taper
     function choseNameCharacterHit(){
-        result = getRandomInt(3);
+        result = getRandomInt(4);
         console.log(result);
         
         if(result == 0){
@@ -210,7 +210,7 @@
     }
 
     function choseNameMonsterHit(){
-        result = getRandomInt(2);
+        result = getRandomInt(3);
         console.log(result);
         
         if(result == 0){
@@ -256,9 +256,9 @@
 
     // MORT - verifie si le monstre est mort
     function checkDeathMonster(message, hpmonster) {
-        hp = hpmonster;
+        hp = parseInt(hpmonster);
         if (hp <= 0) {
-            hpmonster = 0;
+            hpmonster.innerHTML = 0;
             message = "Le monstre est vaincu. Tu as gagné ! Bravo.";
             console.log("monstre mort");
         } else {
@@ -268,9 +268,9 @@
 
     // MORT - verifie si le monstre est mort
     function checkDeathCharacter(message, hpCharacter){
-        hp = hpCharacter;
+        hp = parseInt(hpCharacter);
         if (hp <= 0) {
-            hpCharacter = 0;
+            hpCharacter.innerHTML = 0;
             message = "Le héros est vaincu. Zut.";
             console.log("hero mort");
         } else {
