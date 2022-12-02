@@ -256,9 +256,9 @@
 
     // MORT - verifie si le monstre est mort
     function checkDeathMonster(message, hpmonster) {
-        hp = parseInt(hpmonster);
+        hp = hpmonster;
         if (hp <= 0) {
-            hpmonster.innerHTML = 0;
+            hpmonster = 0;
             message = "Le monstre est vaincu. Tu as gagné ! Bravo.";
             console.log("monstre mort");
         } else {
@@ -268,9 +268,9 @@
 
     // MORT - verifie si le monstre est mort
     function checkDeathCharacter(message, hpCharacter){
-        hp = parseInt(hpCharacter);
+        hp = hpCharacter;
         if (hp <= 0) {
-            hpCharacter.innerHTML = 0;
+            hpCharacter = 0;
             message = "Le héros est vaincu. Zut.";
             console.log("hero mort");
         } else {
