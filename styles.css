@@ -85,7 +85,25 @@ combat
 heros
 {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 4px solid gray;
+}
+
+colonneHero1
+{
+  display: flex;
+  justify-content: center;
   flex-direction: column;
+  border: 4px solid purple;
+}
+
+colonneHero2
+{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border: 4px solid purple;
 }
 
 monstres
@@ -157,6 +175,11 @@ skillsHero
 #boutonAttaque
 {
   background-color: red;
+}
+
+#boutonAttaque:hover
+{
+  cursor: pointer;
 }
 
 #boutonDefense
