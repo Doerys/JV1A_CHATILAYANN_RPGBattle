@@ -27,11 +27,11 @@
             //attaquant iddle et defenseur hit
             setTimeout(function() {
                 animSlayer.setAttribute("src", "images/idle"+nameSlayer+".gif");
-                animVictim.setAttribute("src", "images/hit"+nameVictim+".gif");}, 850);
+                animVictim.setAttribute("src", "images/hit"+nameVictim+".gif");}, 1000);
                 
             //defenseur idle
             setTimeout(function() {
-                animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");}, 1350);
+                animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");}, 1500);
         }
 
 // FONCTIONS ROULEMENT DE TOUR
@@ -44,7 +44,7 @@
 
     // TOUR - verifie si tous les tours sont passes
     function checkNouveauTour(tour){
-        if (tour == 6){
+        if (tour == 8){
             turn = bouclerTour(turn, contenuBoiteDialogue);
         }
         console.log("tour" + tour);
@@ -80,6 +80,14 @@
     
         else if (tourCombat == 5){
             persoActif = document.getElementById("nomMonstre1").innerHTML;
+        }
+        
+        else if (tourCombat == 6){
+            persoActif = document.getElementById("nomMonstre2").innerHTML;
+        }
+
+        else if (tourCombat == 7){
+            persoActif = document.getElementById("nomMonstre3").innerHTML;
         }
     
         return persoActif;
@@ -132,28 +140,31 @@
 
 // FONCTIONS ACTIONS DES PERSOS
     
-    // ACTIONS - Si tour des monstres, declenche serie actions
+    // MONSTER TURN Si tour des monstres, declenche serie actions
     function turnMonster(tour){
 
-        // retrait bouton
-        removeButtons(boutonAttaque, boutonDefense, boutonPouvoir);
+        //Nom du monstre
+        nomActiveChara = choseNameCharacter(turn);
+
+        //Sprite du monstre
+        animationMonstre = choseSprite(nomActiveChara);
     
-        // retrait de pv
+        // calcul dgt random
         damage = getRandomInt(8);
 
         // choix random de hero a taper
-        hitCharacter = choseNameCharacterHit(hitCharacter);
+        hitCharacter = choseNameCharacterHit();
         
         // animation et vie du hero choisi
         animationVictim = choseSprite(hitCharacter);
         vieVictim = choseLife(hitCharacter);
 
-        //vie retiree
+        // retrait de pv
         attack(damage, vieVictim);
         
         // feedbacks visuels
-        infosAttack(nomMonstre, hitCharacter, damage, contenuBoiteDialogue);
-        animationAttack(nomMonstre, animationMonstre, hitCharacter, animationVictim);
+        infosAttack(nomActiveChara, hitCharacter, damage, contenuBoiteDialogue);
+        animationAttack(nomActiveChara, animationMonstre, hitCharacter, animationVictim);
         
         // verification si hero mort
         checkDeathCharacter(contenuBoiteDialogue, vieVictim);
@@ -170,17 +181,16 @@
             nomActiveChara = choseNameCharacter(turn);
             animationHero = choseSprite(nomActiveChara);
 
-            //message debut tour et reapparition boutons
+            //message debut tour et check si tour ennemi ou allie
             messageDebutTour(turn, contenuBoiteDialogue, nomActiveChara);
             checkWhichSideTour(turn);
         }, 3000);
     }
 
     // choix du joueur a taper
-    function choseNameCharacterHit(victimHero){
+    function choseNameCharacterHit(){
         result = getRandomInt(3);
         console.log(result);
-        console.log(victimHero)
         
         if(result == 0){
             victimHero = document.getElementById("nomHero1").innerHTML; 
@@ -198,22 +208,45 @@
 
         return victimHero;
     }
+
+    function choseNameMonsterHit(){
+        result = getRandomInt(2);
+        console.log(result);
+        
+        if(result == 0){
+            victim = document.getElementById("nomMonstre1").innerHTML; 
+        }
+        else if(result == 1){
+            victim = document.getElementById("nomMonstre2").innerHTML;
+        }
+        else if(result == 2){
+            victim = document.getElementById("nomMonstre3").innerHTML;
+        }
+        console.log(victim);
+
+        return victim;
+    }
     
-    // ACTIONS - Si tour du joueur, declenche serie actions
+    // PLAYER TURN - Si tour du joueur, declenche serie actions
     function turnPlayer(){
 
-        // retrait de pv
+        // random de dgt
         damage = getRandomInt(10);
 
-        // selection du monstre a taper ~~ a ameliorer ~~
-        hitCharacter = nomMonstre;
+        // choix random de monstre a taper
+        hitCharacter = choseNameMonsterHit();
+
+        // ~~ monstre a taper - nom, animation et vie ~~
+        animationVictim = choseSprite(hitCharacter);
+        console.log(animationVictim)
         vieVictim = choseLife(hitCharacter);
 
+        // retrait de pv
         attack(damage, vieVictim);
 
         // feedbacks visuels
         infosAttack(nomActiveChara, hitCharacter, damage, contenuBoiteDialogue);  
-        animationAttack(nomActiveChara, animationHero, hitCharacter, animationMonstre);
+        animationAttack(nomActiveChara, animationHero, hitCharacter, animationVictim);
         
         // verification si monstre mort
         checkDeathMonster(contenuBoiteDialogue,vieVictim);
@@ -223,10 +256,10 @@
 
     // MORT - verifie si le monstre est mort
     function checkDeathMonster(message, hpmonster) {
-        hp = hpmonster.innerHTML;
+        hp = hpmonster;
         if (hp <= 0) {
-            hpmonster.innerHTML = 0;
-            message.innerHTML = "Le monstre est vaincu. Tu as gagné ! Bravo.";
+            hpmonster = 0;
+            message = "Le monstre est vaincu. Tu as gagné ! Bravo.";
             console.log("monstre mort");
         } else {
             console.log("monstre vivant");
@@ -255,7 +288,8 @@ boutonDefense = document.getElementById("boutonDefense");
 boutonPouvoir = document.getElementById("boutonPouvoir");
 contenuBoiteDialogue = document.getElementById("contenuBoiteDialogue");
 
-animationMonstre = document.getElementById("animationMonstre1");
+// ~~ variable non monstre a enlever, pour la remplacer quand les monstres pourront etre select ~~
+
 nomMonstre = document.getElementById("nomMonstre1").innerHTML;
 
 turn = 1;
@@ -267,8 +301,6 @@ turn = 1;
 
     //Sprite du premier perso a jouer
     animationHero = choseSprite(nomActiveChara);
-
-    vieMonstre = choseLife(nomMonstre);
 
     //Message boite de dialogue
     messageDebutTour(turn, contenuBoiteDialogue, nomActiveChara);
