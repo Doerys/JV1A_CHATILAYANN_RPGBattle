@@ -229,6 +229,9 @@
 
                 //check si tour ennemi ou allie
                 heroSide = checkWhichSideTour(turn);
+                
+                // Si tour des monstre = actionne
+                startMonsterPhase(heroSide);
             }, 3000);
             console.log("---- Nouveau tour ----");
         }
@@ -363,6 +366,11 @@
         return victimCharaAlive;
     }
 
+function gameOver(){
+
+}
+
+function victory()
 // ------------------------------------- DEBUT DU JEU -------------------------------------
 
 //Elements de HTML
@@ -376,6 +384,8 @@ contenuBoiteDialogue = document.getElementById("contenuBoiteDialogue");
 
 ActiveCharaAlive = true;
 victimCharaAlive = true;
+
+
 
 turn = 1;
 
@@ -415,9 +425,3 @@ boutonAttaque.onclick = function() {
 
     console.log("---- Nouveau tour ----");
 }
-
-
-
-
-    
-}while (heroSide == false);
