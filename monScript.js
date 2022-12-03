@@ -37,9 +37,9 @@
 // FONCTIONS ROULEMENT DE TOUR
 
     // TOUR - incrementer un tour
-    function tourSupp(turnAttack){
-        turnAttack += 1;
-        return turnAttack;
+    function tourSupp(tour){
+        tour += 1;
+        return tour;
     }
 
     // TOUR - verifie si tous les tours sont passes
@@ -101,8 +101,7 @@
 
     // MISE EN PLACE - barre du vie du perso
     function choseLife(perso){
-        barLife = document.getElementById("vie"+perso);
-        console.log(barLife);
+        barLife = document.getElementById("vie"+perso).innerHTML;
         return barLife;
     }
 
@@ -118,7 +117,7 @@
         }
 
         if(tour > 4){
-            turnMonster(turn);
+            turnMonster();
         }
     }
 
@@ -141,7 +140,7 @@
 // FONCTIONS ACTIONS DES PERSOS
     
     // MONSTER TURN Si tour des monstres, declenche serie actions
-    function turnMonster(tour){
+    function turnMonster(){
 
         //Nom du monstre
         nomActiveChara = choseNameCharacter(turn);
@@ -238,7 +237,6 @@
 
         // ~~ monstre a taper - nom, animation et vie ~~
         animationVictim = choseSprite(hitCharacter);
-        console.log(animationVictim)
         vieVictim = choseLife(hitCharacter);
 
         // retrait de pv
@@ -246,11 +244,11 @@
 
         // feedbacks visuels
         infosAttack(nomActiveChara, hitCharacter, damage, contenuBoiteDialogue);  
-        animationAttack(nomActiveChara, animationHero, hitCharacter, animationVictim);
+        animationAttack(nomActiveChara, animActiveChara, hitCharacter, animationVictim);
         
         // verification si monstre mort
         checkDeathMonster(contenuBoiteDialogue,vieVictim);
-        checkAliveCharacter(tour, hpCharacter)
+        checkAliveCharacter(turn, vieActiveChara)
     }
 
 // FONCTIONS DE MORT
@@ -283,18 +281,42 @@
 
     function spriteDisparait(animationCharacter, nomCharacter){
         animationCharacter.style.visibility = 'hidden';
-        nomCharacter.style.visibility = 'hidden';
     }
 
 
 // FONCTIONS CHECK DE VIE
 
-    function checkAliveCharacter(tour, hpCharacter){
+    // Rajoute un tour si le perso est mort
+    function checkAliveCharacter(hpCharacter){
+        //Check si vie = 0. Si oui, on rajoute un tour et on relance la selection
         if (hpCharacter == 0){
-            tour += 1;
+            turn = tourSupp(turn);
+            checkNouveauTour(turn);
+            characterSelection();
+        }
+
+        //Check si vie = 0. Si non, on choisit le sprite du perso, et suite du code
+        //else if(hpCharacter > 0){
+            //animActiveChara = choseSprite(persoChoisi);
+        //}
+    }
+
+    function checkAliveVictim(tour, hpCharacter){
+        if (hpCharacter == 0){
+            hpCharacter = choseNameCharacterHit();
         }
         return tour;
     }
+
+function characterSelection(){
+    nomActiveChara = choseNameCharacter(turn);
+    vieActiveChara = choseLife(nomActiveChara);
+    animActiveChara = choseSprite(nomActiveChara);
+
+    console.log("nom du perso = " + nomActiveChara);
+    console.log("vie du perso = " + vieActiveChara);
+    console.log("anim du perso = " + animActiveChara);
+}
 
 // ------------------------------------- DEBUT DU JEU -------------------------------------
 
@@ -314,10 +336,8 @@ turn = 1;
 // DEBUT DU JEU
 
     //Nom du premier perso a jouer
-    nomActiveChara = choseNameCharacter(turn);
-
-    //Sprite du premier perso a jouer
-    animationHero = choseSprite(nomActiveChara);
+    characterSelection();
+    checkAliveCharacter(turn, vieActiveChara, nomActiveChara);
 
     //Message boite de dialogue
     messageDebutTour(turn, contenuBoiteDialogue, nomActiveChara);
@@ -342,9 +362,9 @@ boutonAttaque.onclick = function() {
         // verification si tous les persos ont agi
         checkNouveauTour(turn);
 
-        //choix des persos
-        nomActiveChara = choseNameCharacter(turn);
-        animationHero = choseSprite(nomActiveChara);
+        // Choix du nouveau perso a agir
+        characterSelection();
+        checkAliveCharacter(vieActiveChara);
 
         //message debut tour et reapparition boutons
         messageDebutTour(turn, contenuBoiteDialogue, nomActiveChara);
@@ -352,4 +372,3 @@ boutonAttaque.onclick = function() {
     }, 3000);
 }
 
-// Mon monstre peut riposter, mais il manque le choix du personnage à taper. Il faut un random pour déterminer qui est touché.
