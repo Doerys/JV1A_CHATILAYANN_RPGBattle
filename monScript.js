@@ -390,9 +390,6 @@
             return ActiveCharaAlive;
         }
 
-
-
-
 // ---------------- FONCTIONS GLOBALES (fonctions appelant à des fonctions intermédiaires) ----------
 
     // --- TOUR ---
@@ -607,9 +604,6 @@ turn = 1;
 
 // DEBUT DU JEU
 
-    //Premier perso choisi
-
-    
     // Selection du premier perso
     characterSelection();
 
