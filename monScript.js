@@ -154,106 +154,6 @@
 
     // --- POUVOIR
 
-
-        function archerPower(){
-
-        }
-        
-        function magePower(){
-        
-        }
-        
-        function guerrierPower(message){
-            archerDef = true;
-            mageDef = true;
-            guerrierDef = true;
-            assassinDef = true;
-
-            console.log("Pouvoir guerrier activé");
-            message.innerHTML = "Le Guerrier déploie son bouclier sacré, protégeant l'ensemble du groupe.";
-            animationPowerGuerrier(nomActiveChara, animActiveChara);
-
-            console.log("Archer def = " + archerDef);
-            console.log("Mage def = " + mageDef);
-            console.log("Guerrier def = " + guerrierDef);
-            console.log("Assassin def = " + assassinDef);
-        }
-        
-        function assassinPower(message){
-            // random de dgt
-            damage = getRandomInt(5);
-
-            // Selectionne les noms des 3 monstres
-            cibleAssassin1 = document.getElementById("nomMonstre1").innerHTML; 
-            cibleAssassin2 = document.getElementById("nomMonstre2").innerHTML;
-            cibleAssassin3 = document.getElementById("nomMonstre3").innerHTML;
-
-            // Stocke la vie des 3 monstres
-            vieCibleAssassin1 = choseLife(cibleAssassin1);
-            vieCibleAssassin2 = choseLife(cibleAssassin2),
-            vieCibleAssassin3 = choseLife(cibleAssassin3);
-
-            // Stocke l'animation des 3 monstres
-            animCibleAssassin1 = choseSprite(cibleAssassin1);
-            animCibleAssassin2 = choseSprite(cibleAssassin2);
-            animCibleAssassin3 = choseSprite(cibleAssassin3);
-
-            // Blesse les 3 monstres
-            attack(damage, vieCibleAssassin1);
-            attack(damage, vieCibleAssassin2);
-            attack(damage, vieCibleAssassin3);
-
-            // feedbacks visuels
-            message.innerHTML = "L'assassin charge son épée. Sa lame frappe l'ensemble des monstres !";
-            animationPowerAssassin(nomActiveChara, animActiveChara, cibleAssassin1, cibleAssassin2, cibleAssassin3, animCibleAssassin1, animCibleAssassin2, animCibleAssassin3);
-            
-            // verification si monstre mort
-            deadMobScore = checkDeathMonster(contenuBoiteDialogue,vieCibleAssassin1, deadMobScore, cibleAssassin1, animCibleAssassin1);
-            deadMobScore = checkDeathMonster(contenuBoiteDialogue,vieCibleAssassin2, deadMobScore, cibleAssassin2, animCibleAssassin2);
-            deadMobScore = checkDeathMonster(contenuBoiteDialogue,vieCibleAssassin3, deadMobScore, cibleAssassin3, animCibleAssassin3);
-
-            console.log("Nombre de monstres morts : " + deadMobScore);
-
-            // verification si victoire
-            victory(contenuBoiteDialogue, deadMobScore);
-
-            // stoppe le jeu en cas de victoire, ou relance un nouveau tour
-            stopTheGame(deadMobScore, deadHeroScore);
-        }
-
-        // animation du pouvoir assassin
-        function animationPowerAssassin(nameSlayer, animSlayer, nameVictim1, nameVictim2, nameVictim3, animCible1, animCible2, animCible3){
-        
-            //attaquant attack
-            animSlayer.setAttribute("src", "images/attack2"+nameSlayer+".gif");
-
-            //attaquant iddle et defenseur hit
-            setTimeout(function() {
-
-                animSlayer.setAttribute("src", "images/idle"+nameSlayer+".gif");
-
-                animCible1.setAttribute("src", "images/hit"+nameVictim1+".gif");
-                animCible2.setAttribute("src", "images/hit"+nameVictim2+".gif");
-                animCible3.setAttribute("src", "images/hit"+nameVictim3+".gif")}, 1000);
-                
-            //defenseur idle
-            setTimeout(function() {
-                animCible1.setAttribute("src", "images/idle"+nameVictim1+".gif");
-                animCible2.setAttribute("src", "images/idle"+nameVictim2+".gif");
-                animCible3.setAttribute("src", "images/idle"+nameVictim3+".gif");}, 1500);
-        }
-
-        // animations du pouvoir guerrier
-        function animationPowerGuerrier(namePerso, animPerso){
-                
-            //pouvoir animation
-            animPerso.setAttribute("src", "images/attack2"+namePerso+".gif");
-
-            //retour idle
-            setTimeout(function() {
-                animPerso.setAttribute("src", "images/idle"+namePerso+".gif");}, 1000);
-        }
-
         // Soustraction de vie. Pour l'instant, enlève 5 points dans tous les cas.
         function useMana(manaPerso) {
             manaPerso.innerHTML = parseInt(manaPerso.innerHTML) - 5;
@@ -664,11 +564,16 @@
                 victimCharaAlive = checkAliveVictim(vieVictim);
             } while(victimCharaAlive == false);
 
+            fireState = pickFire(nomActiveChara, champignonFeu, sanglierFeu, geantFeu);
+
+            // Application de la valeur de gel au monstre qui attaque
+            iceState = pickIce(nomActiveChara, champignonGlace, sanglierGlace, geantGlace);
+
             // Application de la valeur de defense au heros cible.
             victimDef = pickShield(hitCharacter, archerDef, mageDef, guerrierDef, assassinDef);
 
             // verification si le perso cible a une defense. Si non, enclenche une attaque.
-            examShield(nomActiveChara, hitCharacter, victimDef, contenuBoiteDialogue);
+            examStates(nomActiveChara, hitCharacter, iceState, victimDef, contenuBoiteDialogue);
             
             // verification si hero mort
             deadHeroScore = checkDeathCharacter(contenuBoiteDialogue, vieVictim, deadHeroScore);
@@ -682,9 +587,13 @@
             stopTheGame(deadMobScore, deadHeroScore);
         }
 
-        // Verifie si le personnage possede un bouclier avant de lancer une attaque
-        function examShield(nomMonstre, nomVictim, victimDefense, messageEchecAttaque){
-            if (victimDefense == true){
+        // Verifie si le monstre est gele, puis si la cible possede un bouclier avant de lancer une attaque
+        function examStates(nomMonstre, nomVictim, etatGlace, victimDefense, messageEchecAttaque){
+            if(etatGlace == true){
+                console.log("Le monstre est gele");
+                messageEchecAttaque.innerHTML = nomMonstre + " est gelé, et ne peut donc pas attaquer.";
+            }
+            else if (victimDefense == true){
                 console.log("La defense est activee");
                 messageEchecAttaque.innerHTML = nomVictim + " pare l'attaque du " + nomMonstre;
             }
@@ -692,6 +601,101 @@
                 attackMonstre();
             }
         }
+        
+function pickFire(nomMonstre, champiFeu, sangliFeu, gegeFeu){
+    if (nomMonstre == "Champignon"){
+        fireState = champiFeu;
+    }
+    else if (nomMonstre == "Sanglier"){
+        fireState = sangliFeu;
+    }
+    else if (nomMonstre == "Geant"){
+        fireState = gegeFeu;
+    }
+    return fireState;
+}
+
+// Applique la brulure sur le monstre cible
+function applyFire(nomMonstre){
+    if (nomMonstre == "Champignon"){
+        champignonFeu = applyFireChampi(champignonFeu);
+    }
+    else if (nomMonstre == "Sanglier"){
+        sanglierFeu = applyFireSangli(sanglierFeu);
+    }
+    else if (nomMonstre == "Geant"){
+        geantFeu = applyFireGege(geantFeu);
+    }
+
+    console.log(nomMonstre + " est brûlé.");
+}
+
+// Stocke la variable de brulure du champi
+function applyFireChampi(champiFeu){
+    champiFeu = 2;
+    return champiFeu;
+}
+
+// Stocke la variable de brulure du sanglier
+function applyFireSangli(sangliFeu){
+    sangliFeu = 2;
+    return sangliFeu;
+}
+
+// Stocke la variable de brulure du geant
+function applyFireGege(gegeFeu){
+    gegeFeu = 2;
+    return gegeFeu;
+}
+
+
+
+function pickIce(nomMonstre, champiGlace, sangliGlace, gegeGlace){
+    if (nomMonstre == "Champignon"){
+        iceState = champiGlace;
+    }
+    else if (nomMonstre == "Sanglier"){
+        iceState = sangliGlace;
+    }
+    else if (nomMonstre == "Geant"){
+        iceState = gegeGlace;
+    }
+    return iceState;
+}
+
+// Applique le gel sur le monstre cible
+function applyIce(nomMonstre){
+    if (nomMonstre == "Champignon"){
+        champignonGlace = applyIceChampi(champignonGlace);
+    }
+    else if (nomMonstre == "Sanglier"){
+        sanglierGlace = applyIceSangli(sanglierGlace);
+    }
+    else if (nomMonstre == "Geant"){
+        geantGlace = applyIceGege(geantGlace);
+    }
+
+    console.log(nomMonstre + " est gelé.");
+}
+
+// Stocke la variable du gel du champi
+function applyIceChampi(champiGlace){
+    champiGlace = true;
+    return champiGlace;
+}
+
+// Stocke la variable du gel du sanglier
+function applyIceSangli(sangliGlace){
+    sangliGlace = true;
+    return sangliGlace;
+}
+
+// Stocke la variable du gel du geant
+function applyIceGege(gegeGlace){
+    gegeGlace = true;
+    return gegeGlace;
+}
+
 
         // Declenche l'attaque du monstre
         function attackMonstre(){
@@ -711,7 +715,7 @@
 
 function whichCharacterPower(tour){
     if(tour == 1){
-        archerPower();
+        archerPower(contenuBoiteDialogue);
     }
     if(tour == 2){
         magePower();
@@ -726,6 +730,146 @@ function whichCharacterPower(tour){
     }
 }
 
+function archerPower(message){
+
+    // choix random de monstre a taper. Verifie qu'il est vivant, sinon relance le choix, encore et encore, jusqu'a tomber sur qq de vivant
+    do{
+        victimSelection();
+        victimCharaAlive = checkAliveVictim(vieVictim);
+    } while(victimCharaAlive == false);
+
+    // fonction pour appliquer l'effet de gel
+    applyIce(hitCharacter);
+
+    // feedbacks visuels
+    console.log("Pouvoir archer activé");
+    message.innerHTML = "L'archer tire une flèche de givre, gelant l'ennemi pour le tour actuel.";
+    animationPowerArcherMage(nomActiveChara, animActiveChara, hitCharacter, animationVictim);
+}
+
+function animationPowerArcherMage(namePerso, animPerso, nameVictim, animVictim){
+        
+    //pouvoir animation
+    animPerso.setAttribute("src", "images/attack2"+namePerso+".gif");
+
+    //attaquant iddle et defenseur hit
+    setTimeout(function() {
+        animPerso.setAttribute("src", "images/idle"+namePerso+".gif");
+        animVictim.setAttribute("src", "images/hit"+nameVictim+".gif");}, 1000);
+        
+    //defenseur idle
+    setTimeout(function() {
+        animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");}, 1500);
+}
+
+function magePower(){
+
+    // choix random de monstre a taper. Verifie qu'il est vivant, sinon relance le choix, encore et encore, jusqu'a tomber sur qq de vivant
+    do{
+        victimSelection();
+        victimCharaAlive = checkAliveVictim(vieVictim);
+    } while(victimCharaAlive == false);
+
+    // fonction pour appliquer l'effet de brûlure
+    applyFire(hitCharacter);
+
+    // feedbacks visuels
+    console.log("Pouvoir mage activé");
+    message.innerHTML = "Le Mage projette un sort de feu, enflammant l'ennemi sur deux tours.";
+    animationPowerArcherMage(nomActiveChara, animActiveChara, hitCharacter, animationVictim);
+}
+
+function guerrierPower(message){
+    archerDef = true;
+    mageDef = true;
+    guerrierDef = true;
+    assassinDef = true;
+
+    console.log("Pouvoir guerrier activé");
+    message.innerHTML = "Le Guerrier déploie son bouclier sacré, protégeant l'ensemble du groupe.";
+    animationPowerGuerrier(nomActiveChara, animActiveChara);
+
+    console.log("Archer def = " + archerDef);
+    console.log("Mage def = " + mageDef);
+    console.log("Guerrier def = " + guerrierDef);
+    console.log("Assassin def = " + assassinDef);
+}
+
+// animations du pouvoir guerrier
+function animationPowerGuerrier(namePerso, animPerso){
+        
+    //pouvoir animation
+    animPerso.setAttribute("src", "images/attack2"+namePerso+".gif");
+
+    //retour idle
+    setTimeout(function() {
+        animPerso.setAttribute("src", "images/idle"+namePerso+".gif");}, 1000);
+}
+
+
+function assassinPower(message){
+    // random de dgt
+    damage = getRandomInt(5);
+
+    // Selectionne les noms des 3 monstres
+    cibleAssassin1 = document.getElementById("nomMonstre1").innerHTML; 
+    cibleAssassin2 = document.getElementById("nomMonstre2").innerHTML;
+    cibleAssassin3 = document.getElementById("nomMonstre3").innerHTML;
+
+    // Stocke la vie des 3 monstres
+    vieCibleAssassin1 = choseLife(cibleAssassin1);
+    vieCibleAssassin2 = choseLife(cibleAssassin2),
+    vieCibleAssassin3 = choseLife(cibleAssassin3);
+
+    // Stocke l'animation des 3 monstres
+    animCibleAssassin1 = choseSprite(cibleAssassin1);
+    animCibleAssassin2 = choseSprite(cibleAssassin2);
+    animCibleAssassin3 = choseSprite(cibleAssassin3);
+
+    // Blesse les 3 monstres
+    attack(damage, vieCibleAssassin1);
+    attack(damage, vieCibleAssassin2);
+    attack(damage, vieCibleAssassin3);
+
+    // feedbacks visuels
+    message.innerHTML = "L'assassin charge son épée. Sa lame frappe l'ensemble des monstres !";
+    animationPowerAssassin(nomActiveChara, animActiveChara, cibleAssassin1, cibleAssassin2, cibleAssassin3, animCibleAssassin1, animCibleAssassin2, animCibleAssassin3);
+    
+    // verification si monstre mort
+    deadMobScore = checkDeathMonster(contenuBoiteDialogue,vieCibleAssassin1, deadMobScore, cibleAssassin1, animCibleAssassin1);
+    deadMobScore = checkDeathMonster(contenuBoiteDialogue,vieCibleAssassin2, deadMobScore, cibleAssassin2, animCibleAssassin2);
+    deadMobScore = checkDeathMonster(contenuBoiteDialogue,vieCibleAssassin3, deadMobScore, cibleAssassin3, animCibleAssassin3);
+
+    console.log("Nombre de monstres morts : " + deadMobScore);
+
+    // verification si victoire
+    victory(contenuBoiteDialogue, deadMobScore);
+
+    // stoppe le jeu en cas de victoire, ou relance un nouveau tour
+    stopTheGame(deadMobScore, deadHeroScore);
+}
+
+// animation du pouvoir assassin
+function animationPowerAssassin(nameSlayer, animSlayer, nameVictim1, nameVictim2, nameVictim3, animCible1, animCible2, animCible3){
+
+    //attaquant attack
+    animSlayer.setAttribute("src", "images/attack2"+nameSlayer+".gif");
+
+    //attaquant iddle et defenseur hit
+    setTimeout(function() {
+
+        animSlayer.setAttribute("src", "images/idle"+nameSlayer+".gif");
+
+        animCible1.setAttribute("src", "images/hit"+nameVictim1+".gif");
+        animCible2.setAttribute("src", "images/hit"+nameVictim2+".gif");
+        animCible3.setAttribute("src", "images/hit"+nameVictim3+".gif")}, 1000);
+        
+    //defenseur idle
+    setTimeout(function() {
+        animCible1.setAttribute("src", "images/idle"+nameVictim1+".gif");
+        animCible2.setAttribute("src", "images/idle"+nameVictim2+".gif");
+        animCible3.setAttribute("src", "images/idle"+nameVictim3+".gif");}, 1500);
+}
 
 
 // ------------------------------------- DEBUT DU JEU -------------------------------------
@@ -753,6 +897,18 @@ guerrierDef = false;
 assassinDef = false;
 
 victimDef = false;
+
+geantGlace = false;
+sanglierGlace = false;
+champignonGlace = false;
+
+iceState = false;
+
+geantFeu = 0;
+sanglierFeu = 0;
+champignonFeu = 0;
+
+fireState = 0;
 
 turn = 1;
 
