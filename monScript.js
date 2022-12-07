@@ -171,15 +171,80 @@
 
             console.log("Pouvoir guerrier activé");
             message.innerHTML = "Le Guerrier déploie son bouclier sacré, protégeant l'ensemble du groupe.";
-            animationPower(nomActiveChara, animActiveChara);
+            animationPowerGuerrier(nomActiveChara, animActiveChara);
 
             console.log("Archer def = " + archerDef);
             console.log("Mage def = " + mageDef);
             console.log("Guerrier def = " + guerrierDef);
             console.log("Assassin def = " + assassinDef);
         }
+        
+        function assassinPower(message){
+            // random de dgt
+            damage = getRandomInt(5);
 
-        function animationPower(namePerso, animPerso){
+            // Selectionne les noms des 3 monstres
+            cibleAssassin1 = document.getElementById("nomMonstre1").innerHTML; 
+            cibleAssassin2 = document.getElementById("nomMonstre2").innerHTML;
+            cibleAssassin3 = document.getElementById("nomMonstre3").innerHTML;
+
+            // Stocke la vie des 3 monstres
+            vieCibleAssassin1 = choseLife(cibleAssassin1);
+            vieCibleAssassin2 = choseLife(cibleAssassin2),
+            vieCibleAssassin3 = choseLife(cibleAssassin3);
+
+            // Stocke l'animation des 3 monstres
+            animCibleAssassin1 = choseSprite(cibleAssassin1);
+            animCibleAssassin2 = choseSprite(cibleAssassin2);
+            animCibleAssassin3 = choseSprite(cibleAssassin3);
+
+            // Blesse les 3 monstres
+            attack(damage, vieCibleAssassin1);
+            attack(damage, vieCibleAssassin2);
+            attack(damage, vieCibleAssassin3);
+
+            // feedbacks visuels
+            message.innerHTML = "L'assassin charge son épée. Sa lame frappe l'ensemble des monstres !";
+            animationPowerAssassin(nomActiveChara, animActiveChara, cibleAssassin1, cibleAssassin2, cibleAssassin3, animCibleAssassin1, animCibleAssassin2, animCibleAssassin3);
+            
+            // verification si monstre mort
+            deadMobScore = checkDeathMonster(contenuBoiteDialogue,vieCibleAssassin1, deadMobScore, cibleAssassin1, animCibleAssassin1);
+            deadMobScore = checkDeathMonster(contenuBoiteDialogue,vieCibleAssassin2, deadMobScore, cibleAssassin2, animCibleAssassin2);
+            deadMobScore = checkDeathMonster(contenuBoiteDialogue,vieCibleAssassin3, deadMobScore, cibleAssassin3, animCibleAssassin3);
+
+            console.log("Nombre de monstres morts : " + deadMobScore);
+
+            // verification si victoire
+            victory(contenuBoiteDialogue, deadMobScore);
+
+            // stoppe le jeu en cas de victoire, ou relance un nouveau tour
+            stopTheGame(deadMobScore, deadHeroScore);
+        }
+
+        // animation du pouvoir assassin
+        function animationPowerAssassin(nameSlayer, animSlayer, nameVictim1, nameVictim2, nameVictim3, animCible1, animCible2, animCible3){
+        
+            //attaquant attack
+            animSlayer.setAttribute("src", "images/attack2"+nameSlayer+".gif");
+
+            //attaquant iddle et defenseur hit
+            setTimeout(function() {
+
+                animSlayer.setAttribute("src", "images/idle"+nameSlayer+".gif");
+
+                animCible1.setAttribute("src", "images/hit"+nameVictim1+".gif");
+                animCible2.setAttribute("src", "images/hit"+nameVictim2+".gif");
+                animCible3.setAttribute("src", "images/hit"+nameVictim3+".gif")}, 1000);
+                
+            //defenseur idle
+            setTimeout(function() {
+                animCible1.setAttribute("src", "images/idle"+nameVictim1+".gif");
+                animCible2.setAttribute("src", "images/idle"+nameVictim2+".gif");
+                animCible3.setAttribute("src", "images/idle"+nameVictim3+".gif");}, 1500);
+        }
+
+        // animations du pouvoir guerrier
+        function animationPowerGuerrier(namePerso, animPerso){
                 
             //pouvoir animation
             animPerso.setAttribute("src", "images/attack2"+namePerso+".gif");
@@ -187,10 +252,6 @@
             //retour idle
             setTimeout(function() {
                 animPerso.setAttribute("src", "images/idle"+namePerso+".gif");}, 1000);
-        }
-        
-        function assassinPower(){
-        
         }
 
         // Soustraction de vie. Pour l'instant, enlève 5 points dans tous les cas.
@@ -399,12 +460,12 @@
     // --- GESTION DES MORTS ---
 
        // verifie si un monstre est mort
-       function checkDeathMonster(message, hpmonster, ennemiMort) {
+       function checkDeathMonster(message, hpmonster, ennemiMort, nameDeadMonster, animationDeadMonster) {
         hp = hpmonster.innerHTML;
         if (hp <= 0) {
             hpmonster.innerHTML = 0;
-            spriteDisparait(animationVictim);
-            message.innerHTML = hitCharacter + " a été vaincu.";
+            spriteDisparait(animationDeadMonster);
+            message.innerHTML = nameDeadMonster + " a été vaincu.";
             ennemiMort += 1;
             console.log("monstre mort");
         } else {
@@ -550,9 +611,8 @@
         animationAttack(nomActiveChara, animActiveChara, hitCharacter, animationVictim);
         
         // verification si monstre mort
-        deadMobScore = checkDeathMonster(contenuBoiteDialogue,vieVictim, deadMobScore);
+        deadMobScore = checkDeathMonster(contenuBoiteDialogue,vieVictim, deadMobScore, hitCharacter, animationVictim);
         console.log("Nombre de monstres morts : " + deadMobScore);
-        checkAliveCharacter(turn, vieActiveChara);
 
         // verification si victoire
         victory(contenuBoiteDialogue, deadMobScore);
@@ -658,9 +718,11 @@ function whichCharacterPower(tour){
     }
     if(tour == 3){
         guerrierPower(contenuBoiteDialogue);
+        console.log("yes");
     }
     if(tour == 4){
-        assassinPower();
+        assassinPower(contenuBoiteDialogue);
+        console.log("yes");
     }
 }
 
