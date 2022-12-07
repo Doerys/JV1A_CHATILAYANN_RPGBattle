@@ -14,14 +14,6 @@
             tour += 1;
             return tour;
         }
-
-        // Fait boucler le decompte des tours
-        function ReiniTour(decompteTour, message){
-            decompteTour = 1;
-            console.log("tour" + decompteTour);
-            message.innerHTML = "Nouveau tour !";
-            return decompteTour;
-        }
         
         // Message a chaque debut de tour
         function messageDebutTour(tour, message, persoActif){
@@ -70,6 +62,93 @@
                 animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");}, 1500);
         }
    
+    // --- DEFENSE ---
+
+        // Detecte le perso que le joueur controle pour lui appliquer un bouclier
+        function applyShield(tour){
+            if (tour == 1){
+                archerDef = applyShieldArcher(archerDef);
+            }
+            if (tour == 2){
+                mageDef = applyShieldMage(mageDef);
+            }
+            if (tour == 3){
+                guerrierDef =applyShieldGuerrier(guerrierDef);
+            }
+            if (tour == 4){
+                assassinDef = applyShieldAssassin(assassinDef);
+            }
+            console.log("Archer def = " + archerDef);
+            console.log("Mage def = " + mageDef);
+            console.log("Guerrier def = " + guerrierDef);
+            console.log("Assassin def = " + assassinDef);
+        }
+
+        // Stocke la variable du bouclier de l'archer
+        function applyShieldArcher(archerDefense){
+            archerDefense = true;
+            return archerDefense;
+        }
+
+        // Stocke la variable du bouclier de l'archer
+        function applyShieldMage(mageDefense){
+            mageDefense = true;
+            return mageDefense;
+        }
+
+        // Stocke la variable du bouclier de l'archer
+        function applyShieldGuerrier(guerrierDefense){
+            guerrierDefense = true;
+            return guerrierDefense;
+        }
+
+        // Stocke la variable du bouclier de l'archer
+        function applyShieldAssassin(assassinDefense){
+            assassinDefense = true;
+            return assassinDefense;
+        }
+
+        // Applique a la cible du monstre la valeur de defense stockée en fonction du perso
+        function pickShield(nameVictimHero, archerDefense, mageDefense, guerrierDefense, assassinDefense){
+            if (nameVictimHero == "Archer"){
+                victimDefense = archerDefense;
+            }
+            else if (nameVictimHero == "Mage"){
+                victimDefense = mageDefense;
+            }
+            else if (nameVictimHero == "Guerrier"){
+                victimDefense = guerrierDefense;
+            }
+            else if (nameVictimHero == "Assassin"){
+                victimDefense = assassinDefense;
+            }
+            return victimDefense;
+        }
+        
+        // Remet à 0 la défense de l'archer
+        function ReiniShieldArcher(archerDefense){
+            archerDefense = false;
+            return archerDefense;
+        }
+
+        // Remet à 0 la défense du mage
+        function ReiniShieldMage(mageDefense){
+            mageDefense = false;
+            return mageDefense; 
+        }
+
+        // Remet à 0 la défense du guerrier
+        function ReiniShieldGuerrier(guerrierDefense){
+            guerrierDefense = false;
+            return guerrierDefense;
+        }
+
+        // Remet à 0 la défense de l'assassin
+        function ReiniShieldAssassin(assassinDefense){
+            assassinDefense = false;
+            return assassinDefense;
+        }
+
     // --- STOCKAGE DE VARIABLES ---
 
         // Stocke le nom du perso en train de jouer
@@ -172,8 +251,6 @@
         }
 
 
-
-
 // ---------- FONCTIONS INTERMEDIAIRES (fonctions appelant à des fonctions primitives) ---------
 
     // --- RANDOM ---
@@ -220,7 +297,30 @@
             return victim;
         }
 
+    // --- DEFENSE ---
+
+        // Reinitialise de l'ensemble des boucliers a la fin du tour
+        function ReiniShield(){
+            archerDef = ReiniShieldArcher(archerDef);
+            mageDef = ReiniShieldMage(mageDef);
+            guerrierDef = ReiniShieldGuerrier(guerrierDef);
+            assassinDef = ReiniShieldAssassin(assassinDef);
+            console.log("Reinitialisation des boucliers");
+        }
+
     // --- TOUR ---
+
+        // Fait boucler le decompte des tours et reinitialise les boucliers
+        function ReiniTour(decompteTour, message){
+            decompteTour = 1;
+            console.log("tour" + decompteTour);
+            message.innerHTML = "Nouveau tour !"
+
+            // Reinitialise les defenses
+            ReiniShield();
+
+            return decompteTour;
+        }
 
         // verifie si les 8 tours sont passes. Si oui, lance la reinitialisation
         function checkReiniTour(tour){
@@ -370,7 +470,6 @@
                     heroSide = checkWhichSideTour(turn);
 
                     // Si tour de joueur = actionne
-
                     startHeroPhase(heroSide);
             
                     // Si tour des monstre = actionne
@@ -379,8 +478,8 @@
             }
         }
 
-    // PLAYER TURN - Serie actions tour du joueur
-    function turnPlayer(){
+    // ATTACK PLAYER - Serie actions pour attaque du joueur
+    function attackPlayer(){
 
         // random de dgt
         damage = getRandomInt(10);
@@ -411,41 +510,71 @@
 
     }
 
-    // MONSTER TURN - Serie actions tour du monstre
-    function turnMonster(){
+    // DEFENSE PLAYER - Serie actions pour defense du joueur
+    function defensePlayer(){
 
-        // calcul dgt random
-        damage = getRandomInt(8);
-
-        // choix random de hero a taper. Verifie qu'il est vivant, sinon relance le choix, encore et encore, jusqu'a tomber sur qq de vivant
-        do{
-            victimSelection();
-            victimCharaAlive = checkAliveVictim(vieVictim);
-        } while(victimCharaAlive == false);
-
-        // retrait de pv
-        attack(damage, vieVictim);
+        // fonction appliquant une protection
         
+        applyShield(turn);
+
         // feedbacks visuels
-        infosAttack(nomActiveChara, hitCharacter, damage, contenuBoiteDialogue);
-        animationAttack(nomActiveChara, animActiveChara, hitCharacter, animationVictim);
         
-        // verification si hero mort
-        deadHeroScore = checkDeathCharacter(contenuBoiteDialogue, vieVictim, deadHeroScore);
-        console.log("Nombre de heros morts : " + deadHeroScore);
-
-        // verification si defaite
-        
-        gameOver(contenuBoiteDialogue, deadHeroScore);
-
         // stoppe le jeu en cas de victoire, ou relance un nouveau tour
         stopTheGame(deadMobScore, deadHeroScore);
     }
 
+    // --- MONSTER TURN --- 
+    
+        // Serie actions tour du monstre
+        function turnMonster(){
 
+            // choix random de hero a taper. Verifie qu'il est vivant, sinon relance le choix, encore et encore, jusqu'a tomber sur qq de vivant
+            do{
+                victimSelection();
+                victimCharaAlive = checkAliveVictim(vieVictim);
+            } while(victimCharaAlive == false);
 
+            // Application de la valeur de defense au heros cible.
+            victimDef = pickShield(hitCharacter, archerDef, mageDef, guerrierDef, assassinDef);
 
+            // verification si le perso cible a une defense. Si non, enclenche une attaque.
+            examShield(nomActiveChara, hitCharacter, victimDef, contenuBoiteDialogue);
+            
+            // verification si hero mort
+            deadHeroScore = checkDeathCharacter(contenuBoiteDialogue, vieVictim, deadHeroScore);
+            console.log("Nombre de heros morts : " + deadHeroScore);
 
+            // verification si defaite
+            
+            gameOver(contenuBoiteDialogue, deadHeroScore);
+
+            // stoppe le jeu en cas de victoire, ou relance un nouveau tour
+            stopTheGame(deadMobScore, deadHeroScore);
+        }
+
+        // Verifie si le personnage possede un bouclier avant de lancer une attaque
+        function examShield(nomMonstre, nomVictim, victimDefense, messageEchecAttaque){
+            if (victimDefense == true){
+                console.log("La defense est activee");
+                messageEchecAttaque.innerHTML = nomVictim + " pare l'attaque du " + nomMonstre;
+            }
+            else{
+                attackMonstre();
+            }
+        }
+
+        // Declenche l'attaque du monstre
+        function attackMonstre(){
+            // calcul dgt random
+            damage = getRandomInt(8);
+
+            // retrait de pv
+            attack(damage, vieVictim);
+
+            // feedbacks visuels
+            infosAttack(nomActiveChara, hitCharacter, damage, contenuBoiteDialogue);
+            animationAttack(nomActiveChara, animActiveChara, hitCharacter, animationVictim);
+        }
 
 
 // ------------------------------------- DEBUT DU JEU -------------------------------------
@@ -465,6 +594,14 @@ deadMobScore = 0;
 deadHeroScore = 0;
 heroSide = true;
 
+// Variables de defense
+
+archerDef = false;
+mageDef = false;
+guerrierDef = false;
+assassinDef = false;
+
+victimDef = false;
 
 turn = 1;
 
@@ -489,5 +626,24 @@ boutonAttaque.onclick = function() {
     removeButtons(boutonAttaque, boutonDefense, boutonPouvoir);
 
     // actions joueur
-    turnPlayer();
+    attackPlayer();
+}
+
+// CLIC BOUTON DEFENSE
+boutonDefense.onclick = function() {
+
+    // retrait bouton
+    removeButtons(boutonAttaque, boutonDefense, boutonPouvoir);
+
+    // actions joueur
+    defensePlayer();
+
+}
+
+// CLIC BOUTON POUVOIR
+boutonPouvoir.onclick = function() {
+
+    // retrait bouton
+    removeButtons(boutonAttaque, boutonDefense, boutonPouvoir);
+
 }

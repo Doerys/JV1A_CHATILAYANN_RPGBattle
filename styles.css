@@ -216,9 +216,19 @@ UI
   background-color: green;
 }
 
+#boutonDefense:hover
+{
+  cursor: pointer;
+}
+
 #boutonPouvoir
 {
   background-color: blue;
+}
+
+#boutonPouvoir:hover
+{
+  cursor: pointer;
 }
 
 boiteDialogue
