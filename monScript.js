@@ -61,11 +61,11 @@
             setTimeout(function() {
                 animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");}, 1500);
         }
-   
+
     // --- DEFENSE ---
 
         // Detecte le perso que le joueur controle pour lui appliquer un bouclier
-        function applyShield(tour){
+        function applyShield(nomActiveChara, tour, message){
             if (tour == 1){
                 archerDef = applyShieldArcher(archerDef);
             }
@@ -78,6 +78,9 @@
             if (tour == 4){
                 assassinDef = applyShieldAssassin(assassinDef);
             }
+
+            message.innerHTML = nomActiveChara + " se prépare à bloquer la prochaine attaque.";
+
             console.log("Archer def = " + archerDef);
             console.log("Mage def = " + mageDef);
             console.log("Guerrier def = " + guerrierDef);
@@ -149,6 +152,52 @@
             return assassinDefense;
         }
 
+    // --- POUVOIR
+
+
+        function archerPower(){
+
+        }
+        
+        function magePower(){
+        
+        }
+        
+        function guerrierPower(message){
+            archerDef = true;
+            mageDef = true;
+            guerrierDef = true;
+            assassinDef = true;
+
+            console.log("Pouvoir guerrier activé");
+            message.innerHTML = "Le Guerrier déploie son bouclier sacré, protégeant l'ensemble du groupe.";
+            animationPower(nomActiveChara, animActiveChara);
+
+            console.log("Archer def = " + archerDef);
+            console.log("Mage def = " + mageDef);
+            console.log("Guerrier def = " + guerrierDef);
+            console.log("Assassin def = " + assassinDef);
+        }
+
+        function animationPower(namePerso, animPerso){
+                
+            //pouvoir animation
+            animPerso.setAttribute("src", "images/attack2"+namePerso+".gif");
+
+            //retour idle
+            setTimeout(function() {
+                animPerso.setAttribute("src", "images/idle"+namePerso+".gif");}, 1000);
+        }
+        
+        function assassinPower(){
+        
+        }
+
+        // Soustraction de vie. Pour l'instant, enlève 5 points dans tous les cas.
+        function useMana(manaPerso) {
+            manaPerso.innerHTML = parseInt(manaPerso.innerHTML) - 5;
+        }
+
     // --- STOCKAGE DE VARIABLES ---
 
         // Stocke le nom du perso en train de jouer
@@ -195,6 +244,12 @@
         function choseLife(perso){
             barLife = document.getElementById("vie"+perso);
             return barLife;
+        }
+
+        // Stocke la mana d'un perso
+        function choseMana(perso){
+            barMana = document.getElementById("mana"+perso);
+            return barMana;
         }
 
     // --- INTERFACE ---
@@ -314,7 +369,7 @@
         function ReiniTour(decompteTour, message){
             decompteTour = 1;
             console.log("tour" + decompteTour);
-            message.innerHTML = "Nouveau tour !"
+            message.innerHTML = "Nouveau tour !";
 
             // Reinitialise les defenses
             ReiniShield();
@@ -512,13 +567,31 @@
 
         // fonction appliquant une protection
         
-        applyShield(turn);
+        applyShield(nomActiveChara, turn, contenuBoiteDialogue);
 
         // feedbacks visuels
         
         // stoppe le jeu en cas de victoire, ou relance un nouveau tour
         stopTheGame(deadMobScore, deadHeroScore);
     }
+
+    // POWER PLAYER - Serie actions pour pouvoir du joueur
+    
+    function powerPlayer(){
+
+        // stocke la mana restant au personnage
+        manaActiveChara = choseMana(nomActiveChara);
+
+        // Retire la mana utilisee
+        useMana(manaActiveChara);
+
+        // repere quel personnage joue, puis active le pouvoir qui lui est associe
+        whichCharacterPower(turn);
+
+        // stoppe le jeu en cas de victoire, ou relance un nouveau tour
+        stopTheGame(deadMobScore, deadHeroScore);
+    }
+
 
     // --- MONSTER TURN --- 
     
@@ -572,6 +645,25 @@
             infosAttack(nomActiveChara, hitCharacter, damage, contenuBoiteDialogue);
             animationAttack(nomActiveChara, animActiveChara, hitCharacter, animationVictim);
         }
+
+
+// Roue des pouvoirs
+
+function whichCharacterPower(tour){
+    if(tour == 1){
+        archerPower();
+    }
+    if(tour == 2){
+        magePower();
+    }
+    if(tour == 3){
+        guerrierPower(contenuBoiteDialogue);
+    }
+    if(tour == 4){
+        assassinPower();
+    }
+}
+
 
 
 // ------------------------------------- DEBUT DU JEU -------------------------------------
@@ -639,5 +731,8 @@ boutonPouvoir.onclick = function() {
 
     // retrait bouton
     removeButtons(boutonAttaque, boutonDefense, boutonPouvoir);
+
+    // actions joueur
+    powerPlayer();
 
 }
