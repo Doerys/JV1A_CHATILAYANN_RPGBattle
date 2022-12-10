@@ -16,7 +16,7 @@
         }
         
         // Message a chaque debut de tour
-        function messageDebutTour(tour, message, persoActif){
+        function messageDebutTour(message, persoActif){
             message.innerHTML = "C'est au tour de " + persoActif + " d'attaquer.";
         }
 
@@ -46,21 +46,266 @@
             message.innerHTML = SlayerName + " attaque ! " + VictimName + " reçoit " + DmgAttack + " dégâts !";
         }
 
-        // Serie animations
-        function animationAttack(nameSlayer, animSlayer, nameVictim, animVictim){
-        
+        function choixAnimAttack(nameSlayer, animSlayer, nameVictim, animVictim, tour){
+            
+            //Attaque de l'archer
+            if(tour == 1){
+
             //attaquant attack
             animSlayer.setAttribute("src", "images/attack"+nameSlayer+".gif");
 
             //attaquant iddle et defenseur hit
             setTimeout(function() {
                 animSlayer.setAttribute("src", "images/idle"+nameSlayer+".gif");
-                animVictim.setAttribute("src", "images/hit"+nameVictim+".gif");}, 1000);
-                
-            //defenseur idle
-            setTimeout(function() {
-                animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");}, 1500);
+                animVictim.setAttribute("src", "images/hit"+nameVictim+".gif");}, 850);
+
+                if(nameVictim == "Champignon"){
+                    //defenseur idle
+                    setTimeout(function() {
+                        animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                    }, 1400);
+                }
+
+                if(nameVictim == "Sanglier"){
+                    //defenseur idle
+                    setTimeout(function() {
+                        animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                    }, 1600);
+                }
+        
+                if(nameVictim == "Geant"){
+                    //defenseur idle
+                    setTimeout(function() {
+                        animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                    }, 1600);
+                }
+            }
+
+            //Attaque du mage
+            if(tour == 2){
+
+                //attaquant attack
+                animSlayer.setAttribute("src", "images/attack"+nameSlayer+".gif");
+
+                //attaquant iddle et defenseur hit
+                setTimeout(function() {
+                    animSlayer.setAttribute("src", "images/idle"+nameSlayer+".gif");
+                    animVictim.setAttribute("src", "images/hit"+nameVictim+".gif");}, 850);
+
+                    if(nameVictim == "Champignon"){
+                        //defenseur idle
+                        setTimeout(function() {
+                            animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                        }, 1400);
+                    }
+
+                    if(nameVictim == "Sanglier"){
+                        //defenseur idle
+                        setTimeout(function() {
+                            animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                        }, 1600);
+                    }
+
+                    if(nameVictim == "Geant"){
+                        //defenseur idle
+                        setTimeout(function() {
+                            animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                        }, 1600);
+                    }
+            }
+
+            // Attaque du guerrier
+            if(tour == 3){
+
+                //attaquant attack
+                animSlayer.setAttribute("src", "images/attack"+nameSlayer+".gif");
+
+                //attaquant iddle et defenseur hit
+                setTimeout(function() {
+                    animSlayer.setAttribute("src", "images/idle"+nameSlayer+".gif");
+                    animVictim.setAttribute("src", "images/hit"+nameVictim+".gif");}, 1000);
+
+                    if(nameVictim == "Champignon"){
+                        //defenseur idle
+                        setTimeout(function() {
+                            animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                        }, 1600);
+                    }
+
+                    if(nameVictim == "Sanglier"){
+                        //defenseur idle
+                        setTimeout(function() {
+                            animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                        }, 1750);
+                    }
+            
+                    if(nameVictim == "Geant"){
+                        //defenseur idle
+                        setTimeout(function() {
+                            animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                        }, 1750);
+                    }
+            }
+
+            // Attaque de l'assassin
+            if(tour == 4){
+
+                //attaquant attack
+                animSlayer.setAttribute("src", "images/attack"+nameSlayer+".gif");
+
+                //attaquant iddle et defenseur hit
+                setTimeout(function() {
+                    animSlayer.setAttribute("src", "images/idle"+nameSlayer+".gif");
+                    animVictim.setAttribute("src", "images/hit"+nameVictim+".gif");}, 1200);
+
+                    if(nameVictim == "Champignon"){
+                        //defenseur idle
+                        setTimeout(function() {
+                            animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                        }, 1600);
+                    }
+            
+                    if(nameVictim == "Sanglier"){
+                        //defenseur idle
+                        setTimeout(function() {
+                            animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                        }, 1950);
+                    }
+
+                    if(nameVictim == "Geant"){
+                        //defenseur idle
+                        setTimeout(function() {
+                            animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                        }, 1950);
+                    }
+            }
+
+            // Attaque du champignon
+            if(tour == 5){
+                //attaquant attack
+                animSlayer.setAttribute("src", "images/attack"+nameSlayer+".gif");
+
+                //attaquant iddle et defenseur hit
+                setTimeout(function() {
+                    animSlayer.setAttribute("src", "images/idle"+nameSlayer+".gif");
+                    animVictim.setAttribute("src", "images/hit"+nameVictim+".gif");}, 1400);
+
+                    if(nameVictim == "Archer"){
+                        //defenseur idle
+                        setTimeout(function() {
+                            animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                        }, 2000);
+                    }
+        
+                    if(nameVictim == "Mage"){
+                        //defenseur idle
+                        setTimeout(function() {
+                            animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                        }, 2000);
+                    }
+        
+                    if(nameVictim == "Guerrier"){
+                        //defenseur idle
+                        setTimeout(function() {
+                            animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                        }, 2000);
+                    }
+        
+                    if(nameVictim == "Assassin"){
+                        //defenseur idle
+                        setTimeout(function() {
+                            animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                        }, 2000);
+                    }
+        
+            }
+
+            // Attaque du sanglier
+            if(tour == 6){
+                //attaquant attack
+                animSlayer.setAttribute("src", "images/attack"+nameSlayer+".gif");
+
+                //attaquant iddle et defenseur hit
+                setTimeout(function() {
+                    animSlayer.setAttribute("src", "images/idle"+nameSlayer+".gif");
+                    animVictim.setAttribute("src", "images/hit"+nameVictim+".gif");}, 1700);
+
+                    if(nameVictim == "Archer"){
+                        //defenseur idle
+                        setTimeout(function() {
+                            animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                        }, 2250);
+                    }
+        
+                    if(nameVictim == "Mage"){
+                        //defenseur idle
+                        setTimeout(function() {
+                            animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                        }, 2250);
+                    }
+        
+                    if(nameVictim == "Guerrier"){
+                        //defenseur idle
+                        setTimeout(function() {
+                            animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                        }, 2250);
+                    }
+        
+                    if(nameVictim == "Assassin"){
+                        //defenseur idle
+                        setTimeout(function() {
+                            animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                        }, 2250);
+                    }
+            }
+
+            // attaque du Geant
+            if(tour == 7){
+                //attaquant attack
+                animSlayer.setAttribute("src", "images/attack"+nameSlayer+".gif");
+
+                //attaquant iddle et defenseur hit
+                setTimeout(function() {
+                    animSlayer.setAttribute("src", "images/idle"+nameSlayer+".gif");
+                    animVictim.setAttribute("src", "images/hit"+nameVictim+".gif");}, 1100);
+
+                    if(nameVictim == "Archer"){
+                        //defenseur idle
+                        setTimeout(function() {
+                            animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                        }, 1500);
+                    }
+        
+                    if(nameVictim == "Mage"){
+                        //defenseur idle
+                        setTimeout(function() {
+                            animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                        }, 1500);
+                    }
+        
+                    if(nameVictim == "Guerrier"){
+                        //defenseur idle
+                        setTimeout(function() {
+                            animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                        }, 1500);
+                    }
+        
+                    if(nameVictim == "Assassin"){
+                        //defenseur idle
+                        setTimeout(function() {
+                            animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                        }, 1500);
+                    }
+            }
         }
+
+        // Serie animations
+        function animationAttack(){
+
+            choixAnimAttack(nomActiveChara, animActiveChara, hitCharacter, animationVictim, turn);
+        }
+
+
 
     // --- DEFENSE ---
 
@@ -100,6 +345,57 @@
                 victimDefense = listHero[3];
             }
             return victimDefense;
+        }
+
+        function animationShield(tour){
+
+            if(tour == 1){
+                indicArcher.setAttribute("src", "images/shieldUp.gif");
+                indicArcher.style.height = "102px";
+                indicArcher.style.width = "102px";
+            }
+            if(tour == 2){
+                indicMage.setAttribute("src", "images/shieldUp.gif");
+                indicMage.style.height = "102px";
+                indicMage.style.width = "102px";
+            }
+            if(tour == 3){
+                indicGuerrier.setAttribute("src", "images/shieldUp.gif");
+                indicGuerrier.style.height = "117px";
+                indicGuerrier.style.width = "117px";
+            }
+            if(tour == 4){
+                indicAssassin.setAttribute("src", "images/shieldUp.gif");
+                indicAssassin.style.height = "117px";
+                indicAssassin.style.width = "117px";
+            }
+        
+            setTimeout(function(){
+                
+                //Reboot archer
+                indicArcher.setAttribute("src", "images/indicateur5.gif");
+                indicArcher.style.height = "25%";
+                indicArcher.style.width = "25%";
+        
+                //Reboot mage
+                indicMage.setAttribute("src", "images/indicateur5.gif");
+                indicMage.style.height = "25%";
+                indicMage.style.width = "25%";
+        
+                //Reboot guerrier        
+                indicGuerrier.setAttribute("src", "images/indicateur5.gif");
+                indicGuerrier.style.height = "25%";
+                indicGuerrier.style.width = "25%";
+        
+                //Reboot assassin
+                indicAssassin.setAttribute("src", "images/indicateur5.gif");
+                indicAssassin.style.height = "25%";
+                indicAssassin.style.width = "25%";
+                
+                // on retire l'indicateur
+                removeIndicator();
+            
+            }, 2100);
         }
 
     // --- POUVOIR
@@ -144,7 +440,7 @@
         }
 
         // serie d'animations commmune aux pouvoirs archer et mage
-        function animationPowerArcherMage(namePerso, animPerso, nameVictim, animVictim){
+        function animationPowerArcher(namePerso, animPerso, nameVictim, animVictim){
                 
             //pouvoir animation
             animPerso.setAttribute("src", "images/attack2"+namePerso+".gif");
@@ -152,22 +448,123 @@
             //attaquant iddle et defenseur hit
             setTimeout(function() {
                 animPerso.setAttribute("src", "images/idle"+namePerso+".gif");
-                animVictim.setAttribute("src", "images/hit"+nameVictim+".gif");}, 2000);
-                
-            //defenseur idle
-            setTimeout(function() {
-                animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");}, 2500);
+                animVictim.setAttribute("src", "images/hit"+nameVictim+".gif");}, 2500);
+
+                if(nameVictim == "Champignon"){
+                    //defenseur idle
+                    setTimeout(function() {
+                        animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                    }, 3050);
+                }
+
+                if(nameVictim == "Sanglier"){
+                    //defenseur idle
+                    setTimeout(function() {
+                        animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                    }, 3250);
+                }
+
+                if(nameVictim == "Geant"){
+                    //defenseur idle
+                    setTimeout(function() {
+                        animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                    }, 3250);
+                }
         }
         
+        // serie d'animations commmune aux pouvoirs archer et mage
+        function animationPowerMage(namePerso, animPerso, nameVictim, animVictim){
+                
+            //pouvoir animation
+            animPerso.setAttribute("src", "images/attack2"+namePerso+".gif");
+
+            //attaquant iddle et defenseur hit
+            setTimeout(function() {
+                animPerso.setAttribute("src", "images/idle"+namePerso+".gif");
+                animVictim.setAttribute("src", "images/hit"+nameVictim+".gif");}, 2400);
+                
+            if(nameVictim == "Champignon"){
+                //defenseur idle
+                setTimeout(function() {
+                    animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                }, 2950);
+            }
+
+            if(nameVictim == "Sanglier"){
+                //defenseur idle
+                setTimeout(function() {
+                    animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                }, 3150);
+            }
+
+            if(nameVictim == "Geant"){
+                //defenseur idle
+                setTimeout(function() {
+                    animVictim.setAttribute("src", "images/idle"+nameVictim+".gif");           
+                }, 3150);
+            }
+        }
+
+
         // animations du pouvoir guerrier
         function animationPowerGuerrier(namePerso, animPerso){
                 
             //pouvoir animation
             animPerso.setAttribute("src", "images/attack2"+namePerso+".gif");
 
+            //Bouclier archer
+            indicArcher.style.visibility = "visible";
+            indicArcher.setAttribute("src", "images/shieldUp.gif");
+            indicArcher.style.height = "102px";
+            indicArcher.style.width = "102px";
+
+            //Bouclier Mage
+            indicMage.style.visibility = "visible";
+            indicMage.setAttribute("src", "images/shieldUp.gif");
+            indicMage.style.height = "102px";
+            indicMage.style.width = "102px";
+
+            //Bouclier Guerrier
+            indicGuerrier.style.visibility = "visible";
+            indicGuerrier.setAttribute("src", "images/shieldUp.gif");
+            indicGuerrier.style.height = "117px";
+            indicGuerrier.style.width = "117px";
+
+            //Bouclier Assassin
+            indicAssassin.style.visibility = "visible";
+            indicAssassin.setAttribute("src", "images/shieldUp.gif");
+            indicAssassin.style.height = "117px";
+            indicAssassin.style.width = "117px";
+
             //retour idle
             setTimeout(function() {
-                animPerso.setAttribute("src", "images/idle"+namePerso+".gif");}, 2000);
+                animPerso.setAttribute("src", "images/idle"+namePerso+".gif");}, 1000);
+
+            //Icone bouclier
+            setTimeout(function() {
+            
+                //Reboot archer
+                indicArcher.setAttribute("src", "images/indicateur5.gif");
+                indicArcher.style.height = "25%";
+                indicArcher.style.width = "25%";
+
+                //Reboot mage
+                indicMage.setAttribute("src", "images/indicateur5.gif");
+                indicMage.style.height = "25%";
+                indicMage.style.width = "25%";
+
+                //Reboot guerrier        
+                indicGuerrier.setAttribute("src", "images/indicateur5.gif");
+                indicGuerrier.style.height = "25%";
+                indicGuerrier.style.width = "25%";
+
+                //Reboot assassin
+                indicAssassin.setAttribute("src", "images/indicateur5.gif");
+                indicAssassin.style.height = "25%";
+                indicAssassin.style.width = "25%";
+                
+                removeIndicator();}, 2100);
+
         }
 
         // animation du pouvoir assassin
@@ -183,13 +580,16 @@
 
                 animCible1.setAttribute("src", "images/hit"+nameVictim1+".gif");
                 animCible2.setAttribute("src", "images/hit"+nameVictim2+".gif");
-                animCible3.setAttribute("src", "images/hit"+nameVictim3+".gif")}, 2000);
+                animCible3.setAttribute("src", "images/hit"+nameVictim3+".gif")}, 2300);
                 
-            //defenseur idle
+            //champignon idle
             setTimeout(function() {
-                animCible1.setAttribute("src", "images/idle"+nameVictim1+".gif");
+                animCible1.setAttribute("src", "images/idle"+nameVictim1+".gif");}, 2850);
+
+            //geant et sanglier idle
+            setTimeout(function() {
                 animCible2.setAttribute("src", "images/idle"+nameVictim2+".gif");
-                animCible3.setAttribute("src", "images/idle"+nameVictim3+".gif");}, 2500);
+                animCible3.setAttribute("src", "images/idle"+nameVictim3+".gif");}, 3050);
         }
 
     // --- STOCKAGE DE VARIABLES ---
@@ -265,6 +665,61 @@
         // Disparition d'un sprite
         function spriteDisparait(animationCharacter){
             animationCharacter.style.visibility = 'hidden';
+        }
+
+        // Réagence les boutons pour le prochain tour
+        function enableActions(boutAtt, boutDef, boutPouvoir){
+            boutAtt.disabled = false;
+            boutAtt.style.backgroundColor = "#B03333";
+            boutAtt.style.cursor = "pointer";
+
+            boutDef.disabled = false;
+            boutDef.style.backgroundColor = "#27821C";
+            boutDef.style.cursor = "pointer";
+            
+            boutPouvoir.disabled = false;
+            boutPouvoir.style.backgroundColor = "#1C4082";
+            boutPouvoir.style.cursor = "pointer";
+        }
+
+        //Enleve les actions (boutons) impossibles a faire
+        function disableActions(boutAtt, boutDef, boutPouvoir, listeActions, mana){
+
+            if(listeActions[0] == 1){
+                boutAtt.disabled = true;
+                boutAtt.style.backgroundColor = "grey";
+                boutAtt.style.cursor = "default";
+            }
+
+            if(listeActions[1] == 1){
+                boutDef.disabled = true;
+                boutDef.style.backgroundColor = "grey";
+                boutDef.style.cursor = "default";
+            }
+
+            if(listeActions[2] == 1){
+                boutPouvoir.disabled = true;
+                boutPouvoir.style.backgroundColor = "grey";
+                boutPouvoir.style.cursor = "default";
+            }
+
+            if(mana.innerHTML == 0){
+                boutPouvoir.disabled = true;
+                boutPouvoir.style.backgroundColor = "grey";
+                boutPouvoir.style.cursor = "default";
+                console.log("plus de mana");
+            }
+        }
+
+        // Affichage de l'image d'un personnage en action
+        function changeImageBoiteDialogue(image, actifCharacter){
+            image.style.visibility = "visible";
+            image.setAttribute("src", "images/face"+actifCharacter+".png");
+        }
+
+        // On retire l'image de la boite de dialogue 
+        function removeImageBoiteDialogue(image){
+            image.style.visibility = "hidden";
         }
 
     // --- MONSTRE ---
@@ -358,6 +813,114 @@
             return victimCharaAlive;
         }
 
+    // --- GESTION DES COOLDOWNS ---
+
+        // Stocke la liste d'actions permises pour le perso actif
+        function whichCharacterPlay(tour){
+        
+            if(tour == 1){
+                listPersoActif = listActionsArcher;
+                console.log("liste archer");
+            }
+            if(tour == 2){
+                listPersoActif = listActionsMage;
+            }
+            if(tour == 3){
+                listPersoActif = listActionsGuerrier;
+            }
+            if(tour == 4){
+                listPersoActif = listActionsAssassin;
+            }
+            console.log("liste des actions récupérées : " + listPersoActif);
+            return listPersoActif;
+        }
+
+        //affiche un indicateur sur le perso actif
+        function putIndicator(tour){
+            if(tour == 1){
+                indicArcher.style.visibility = "visible";
+            }
+            if(tour == 2){
+                indicMage.style.visibility = "visible";
+            }
+            if(tour == 3){
+                indicGuerrier.style.visibility = "visible";
+            }
+            if(tour == 4){
+                indicAssassin.style.visibility = "visible";
+            }
+        }
+
+        function removeIndicator(){
+            indicArcher.style.visibility = "hidden";
+            indicMage.style.visibility = "hidden";
+            indicGuerrier.style.visibility = "hidden";
+            indicAssassin.style.visibility = "hidden";
+        }
+
+        // Retourne une action effectuee pour la rendre inutilisable le tour suivant
+
+            // Action attaque
+            function actionAttackDone(listeActions){
+                listeActions = [1, 0, 0];
+                console.log("liste des actions à venir : " + listeActions);
+                return listeActions;
+            }
+
+            // Action defense
+            function actionDefenseDone(listeActions){
+                listeActions = [0, 1, 0];
+                console.log("liste des actions : " + listeActions);
+                return listeActions;
+            }
+
+            // Action pouvoir
+            function actionPowerDone(listeActions){
+                listeActions = [0, 0, 1];
+                console.log("liste des actions : " + listeActions);
+                return listeActions;
+            }
+
+        //Stocke la liste d'actions permises pour le prochain tour au perso
+        function whichCharacterHavePlayed(tour){
+            if(tour == 1){
+                listActionsArcher = returnActionsArcher(listActionsActiveChara);
+            }
+            if(tour == 2){
+                listActionsMage = returnActionsMage(listActionsActiveChara);
+            }
+            if(tour == 3){
+                listActionsGuerrier = returnActionsGuerrier(listActionsActiveChara);
+            }
+            if(tour == 4){
+                listActionsAssassin = returnActionsAssassin(listActionsActiveChara);
+            }
+
+        }
+
+            // La liste des cooldowns du "perso actif" est renvoyee a Archer
+            function returnActionsArcher(listePersoActif){
+                listActionsArcher = listePersoActif;
+                return listActionsArcher;
+            }
+
+            // La liste des cooldowns du "perso actif" est renvoyee a Mage
+            function returnActionsMage(listePersoActif){
+                listActionsMage = listePersoActif;
+                return listActionsMage;
+            }
+            
+            // La liste des cooldowns du "perso actif" est renvoyee a Guerrier
+            function returnActionsGuerrier(listePersoActif){
+                listActionsGuerrier = listePersoActif;
+                return listActionsGuerrier;
+            }
+            
+            // La liste des cooldowns du "perso actif" est renvoyee a Assassin
+            function returnActionsAssassin(listePersoActif){
+                listActionsAssassin = listePersoActif;
+                return listActionsAssassin;
+            }
 
 // ---------- FONCTIONS INTERMEDIAIRES (fonctions appelant à des fonctions primitives) ---------
 
@@ -498,6 +1061,8 @@
             return ActiveCharaAlive;
         }
 
+    // --- GESTION DES COOLDOWNS ---
+
 // ---------------- FONCTIONS GLOBALES (fonctions appelant à des fonctions intermédiaires) ----------
 
     // --- TOUR ---
@@ -517,16 +1082,22 @@
                 showButtons(boutonAttaque, boutonDefense, boutonPouvoir);
 
                 // On réactive tous les boutons
-                enableActions()
+                enableActions(boutonAttaque, boutonDefense, boutonPouvoir);
 
                 // Stocke la liste d'actions permises pour le perso actif
                 listActionsActiveChara = whichCharacterPlay(turn);
 
+                // Met un indicateur sur le perso actif
+                putIndicator(turn);
+
                 //Enleve les actions impossibles a faire
-                disableActions();
+                disableActions(boutonAttaque, boutonDefense, boutonPouvoir, listActionsActiveChara, manaActiveChara);
+
+                // Affichage de l'image du joueur actif
+                changeImageBoiteDialogue(imageBoiteDialogue, nomActiveChara);
 
                 //message debut tour pour joueur
-                messageDebutTour(turn, contenuBoiteDialogue, nomActiveChara);
+                messageDebutTour(contenuBoiteDialogue, nomActiveChara);
             }
         }
 
@@ -566,12 +1137,17 @@
             if (mortsEnnemis == 3 || mortsHeros == 4){
                 console.log("Jeu termine");
             }
-            else if (mortsEnnemis != 3 && mortsHeros != 4){    
+            else if (mortsEnnemis != 3 && mortsHeros != 4){
+                
                 // incrementation nouveau tour
                 turn = tourSupp(turn);
+
+                clearTimeout();
         
                 setTimeout(function() {
 
+                    // On retire l'image de la boite de dialogue 
+                    removeImageBoiteDialogue(imageBoiteDialogue);
 
                     console.log("actions Archer : " + listActionsArcher);
                     console.log("actions Mage : " +listActionsMage);
@@ -593,12 +1169,15 @@
             
                     // Si tour des monstre = actionne
                     startMonsterPhase(heroSide);
-                }, 3000);
+                }, 4000);
             }
         }
 
     // ATTACK PLAYER - Serie actions pour attaque du joueur
     function attackPlayer(){
+
+        // Enleve indicateur visuel sur le perso actif
+        removeIndicator();
 
         // random de dgt
         damage = getRandomInt(10);
@@ -614,7 +1193,9 @@
 
         // feedbacks visuels
         infosAttack(nomActiveChara, hitCharacter, damage, contenuBoiteDialogue);  
-        animationAttack(nomActiveChara, animActiveChara, hitCharacter, animationVictim);
+        animationAttack();
+
+        clearTimeout();
         
         // verification si monstre mort
         deadMobScore = checkDeathMonster(contenuBoiteDialogue,vieVictim, deadMobScore, hitCharacter, animationVictim);
@@ -641,7 +1222,8 @@
         
         applyShield(nomActiveChara, turn, contenuBoiteDialogue, heroesDef);
 
-        // feedbacks visuels
+        // feedbacks visuels ET retrait de l'indicateur
+        animationShield(turn);
 
         // Reini les capacites permises pour le prochain tours
         listActionsActiveChara = actionDefenseDone(listActionsActiveChara);
@@ -656,6 +1238,9 @@
     // POWER PLAYER - Serie actions pour pouvoir du joueur
     
     function powerPlayer(){
+
+        // Enleve indicateur visuel sur le perso actif
+        removeIndicator();
 
         // Retire la mana utilisee
         useMana(manaActiveChara);
@@ -706,7 +1291,7 @@
             // feedbacks visuels
             console.log("Pouvoir archer activé");
             message.innerHTML = "L'archer tire une flèche de givre, gelant l'ennemi pour le tour actuel.";
-            animationPowerArcherMage(nomActiveChara, animActiveChara, hitCharacter, animationVictim);
+            animationPowerArcher(nomActiveChara, animActiveChara, hitCharacter, animationVictim);
         }
 
         // Enclenche le pouvoir du mage
@@ -730,7 +1315,7 @@
 
             // feedbacks visuels
             console.log("Pouvoir mage activé");
-            animationPowerArcherMage(nomActiveChara, animActiveChara, hitCharacter, animationVictim);
+            animationPowerMage(nomActiveChara, animActiveChara, hitCharacter, animationVictim);
 
             // verification si monstre mort
             deadMobScore = checkDeathMonster(contenuBoiteDialogue, vieVictim, deadMobScore, hitCharacter, animationVictim);
@@ -878,6 +1463,8 @@
         function attackMonstre(){
             // calcul dgt random
             damage = getRandomInt(8);
+            // Affichage de l'image du joueur actif
+            changeImageBoiteDialogue(imageBoiteDialogue, hitCharacter);
 
             // retrait de pv
             attack(damage, vieVictim);
@@ -886,122 +1473,6 @@
             infosAttack(nomActiveChara, hitCharacter, damage, contenuBoiteDialogue);
             animationAttack(nomActiveChara, animActiveChara, hitCharacter, animationVictim);
         }
-
-// Stocke la liste d'actions permises pour le perso actif
-function whichCharacterPlay(tour){
-    
-    if(tour == 1){
-        listPersoActif = listActionsArcher;
-        console.log("liste archer");
-    }
-    if(tour == 2){
-        listPersoActif = listActionsMage;
-    }
-    if(tour == 3){
-        listPersoActif = listActionsGuerrier;
-    }
-    if(tour == 4){
-        listPersoActif = listActionsAssassin;
-    }
-    console.log("liste des actions récupérées : " + listPersoActif);
-    return listPersoActif;
-}
-
-// Réagence les boutons pour le prochain tour
-function enableActions(){
-    boutonAttaque.disabled = false;
-    boutonAttaque.style.backgroundColor = "#B03333";
-    boutonDefense.disabled = false;
-    boutonDefense.style.backgroundColor = "#27821C";
-    boutonPouvoir.disabled = false;
-    boutonPouvoir.style.backgroundColor = "#1C4082";
-}
-
-//Enleve les actions impossibles a faire
-function disableActions(){
-
-    if(listActionsActiveChara[0] == 1){
-        boutonAttaque.disabled = true;
-        boutonAttaque.style.backgroundColor = "grey";
-    }
-
-    if(listActionsActiveChara[1] == 1){
-        boutonDefense.disabled = true;
-        boutonDefense.style.backgroundColor = "grey";
-    }
-
-    if(listActionsActiveChara[2] == 1){
-        boutonPouvoir.disabled = true;
-        boutonPouvoir.style.backgroundColor = "grey";
-    }
-
-    if(manaActiveChara.innerHTML == 0){
-        boutonPouvoir.disabled = true;
-        boutonPouvoir.style.backgroundColor = "grey";
-        console.log("plus de mana");
-    }
-}
-
-// Retire un bouton
-function removeOneButton(boutonAEnlever){
-    document.getElementById("mySelect").disabled = true;
-}
-
-// Change actions
-
-function actionAttackDone(listeActions){
-    listeActions = [1, 0, 0];
-    console.log("liste des actions à venir : " + listeActions);
-    return listeActions;
-}
-
-function actionDefenseDone(listeActions){
-    listeActions = [0, 1, 0];
-    console.log("liste des actions : " + listeActions);
-    return listeActions;
-}
-
-function actionPowerDone(listeActions){
-    listeActions = [0, 0, 1];
-    console.log("liste des actions : " + listeActions);
-    return listeActions;
-}
-
-function whichCharacterHavePlayed(tour){
-    if(tour == 1){
-        listActionsArcher = returnActionsArcher(listActionsActiveChara);
-    }
-    if(tour == 2){
-        listActionsMage = returnActionsMage(listActionsActiveChara);
-    }
-    if(tour == 3){
-        listActionsGuerrier = returnActionsGuerrier(listActionsActiveChara);
-    }
-    if(tour == 4){
-        listActionsAssassin = returnActionsAssassin(listActionsActiveChara);
-    }
-
-}
-
-function returnActionsArcher(listePersoActif){
-    listActionsArcher = listePersoActif;
-    return listActionsArcher;
-}
-
-function returnActionsMage(listePersoActif){
-    listActionsMage = listePersoActif;
-    return listActionsMage;
-}
-
-function returnActionsGuerrier(listePersoActif){
-    listActionsGuerrier = listePersoActif;
-    return listActionsGuerrier;
-}
-
-function returnActionsAssassin(listePersoActif){
-    listActionsAssassin = listePersoActif;
-    return listActionsAssassin;
-}
 
 // ------------------------------------- DEBUT DU JEU -------------------------------------
 
@@ -1012,14 +1483,39 @@ boutonDefense = document.getElementById("boutonDefense");
 boutonPouvoir = document.getElementById("boutonPouvoir");
 contenuBoiteDialogue = document.getElementById("contenuBoiteDialogue");
 
-// ~~ variable non monstre a enlever, pour la remplacer quand les monstres pourront etre select ~~
+infobulleChampignon = document.getElementById("infobulleChampignon");
+infobulleSanglier = document.getElementById("infobulleSanglier");
+infobulleGeant = document.getElementById("infobulleGeant");
+
+champignon = document.getElementById("animationChampignon");
+sanglier = document.getElementById("animationSanglier");
+geant = document.getElementById("animationGeant");
+
+infosAttaque = document.getElementById("infobulleAttaque");
+infosDefense = document.getElementById("infobulleDefense");
+infosPouvoir = document.getElementById("infobullePouvoir");
+
+indicArcher = document.getElementById("indicateurArcher");
+indicMage = document.getElementById("indicateurMage");
+indicGuerrier = document.getElementById("indicateurGuerrier");
+indicAssassin = document.getElementById("indicateurAssassin");
+
+
+imageBoiteDialogue = document.getElementById("imagePersoActif");
+
+
+// Variables du joueur actif (celui dont c'est le tour)
 
 ActiveCharaAlive = true;
+listActionsActiveChara = [0, 0, 0];
 
 victimCharaAlive = true;
-listActionsActiveChara = [0, 0, 0];
+
+//Nombre de personnages morts de chaque camp
 deadMobScore = 0;
 deadHeroScore = 0;
+
+// Booleenne pour verifier si tour de joueur ou non
 heroSide = true;
 
 // Variables de defense
@@ -1040,12 +1536,13 @@ fireCooldown = [0, 0, 0];
 
 fireState = 0;
 
-
-listActionsArcher = [1, 0, 0];
-listActionsMage = [0, 1, 0];
+// Cooldown des actions de personnage
+listActionsArcher = [0, 0, 0];
+listActionsMage = [0, 0, 0];
 listActionsGuerrier = [0, 0, 0];
 listActionsAssassin = [0, 0, 0];
 
+// Compteur de tour
 turn = 1;
 
 // DEBUT DU JEU
@@ -1057,7 +1554,7 @@ turn = 1;
     startHeroPhase(heroSide);
 
     //Message boite de dialogue
-    messageDebutTour(turn, contenuBoiteDialogue, nomActiveChara);
+    messageDebutTour(contenuBoiteDialogue, nomActiveChara);
 
 // CLIC BOUTON ATTAQUE
 boutonAttaque.onclick = function() {
@@ -1090,3 +1587,74 @@ boutonPouvoir.onclick = function() {
     powerPlayer();
 
 }
+
+// Infobulles des monstres
+
+champignon.onmouseover = function()
+{
+    infobulleChampignon.style.visibility = "visible";
+    console.log("infobulle détecté");
+}
+
+champignon.onmouseout = function()
+{
+    infobulleChampignon.style.visibility = "hidden";
+    console.log("infobulle détecté");
+}
+
+sanglier.onmouseover = function()
+{
+    infobulleSanglier.style.visibility = "visible";
+    console.log("infobulle détecté");
+}
+
+sanglier.onmouseout = function()
+{
+    infobulleSanglier.style.visibility = "hidden";
+    console.log("infobulle détecté");
+}
+
+geant.onmouseover = function()
+{
+    infobulleGeant.style.visibility = "visible";
+    console.log("infobulle détecté");
+}
+
+geant.onmouseout = function()
+{
+    infobulleGeant.style.visibility = "hidden";
+    console.log("infobulle détecté");
+}
+
+// Infobulles des competences
+
+boutonAttaque.onmouseover = function()
+{
+    infosAttaque.style.visibility = "visible";
+}
+
+boutonAttaque.onmouseout = function()
+{
+    infosAttaque.style.visibility = "hidden";
+}
+
+boutonDefense.onmouseover = function()
+{
+    infosDefense.style.visibility = "visible";
+}
+
+boutonDefense.onmouseout = function()
+{
+    infosDefense.style.visibility = "hidden";
+}
+
+boutonPouvoir.onmouseover = function()
+{
+    infosPouvoir.style.visibility = "visible";
+}
+
+boutonPouvoir.onmouseout = function()
+{
+    infosPouvoir.style.visibility = "hidden";
+}
+

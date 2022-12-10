@@ -2,259 +2,408 @@
   font-family: 'Pixellari';
   src: url("fonts/Pixellari.ttf") format ('truetype');
 }
+
+*
+{
+    font-family: 'Pixellari', Impact, Arial, sans-serif;
+}
+
 body
 {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  border: 4px solid black;
+  background-color: #7F4349; 
+  border: 4px solid black
 }
 
-scene
+#scene
 {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  background-image: url(images/backgroundScene3.png);
   width: 1703px;
   height: 959px;
-  background-image: url(images/backgroundScene3.png);
-  border: 4px solid purple;
-}
-
-h2, h3
-{
-  font-family: 'Pixellari', Impact, Arial, sans-serif;
-}
-
-vies
-{
-  display: flex;
-  justify-content: space-around;
-  border: 4px solid magenta;
-}
-
-vieHeros
-{
-  display: flex;
-  justify-content: space-between;
-  border: 4px solid yellow;
-}
-
-.vieHero h3
-{
-  display: flex;
-  flex-direction: row;
-  font: 2em, bold, capitalize, blue;
-  padding: 3px 3px 3px 3px;
-  margin: 3px 3px 3px 3px;
-  background-color: yellowgreen;
-  border: 2px solid black;
-  border-radius: 6px;
-}
-
-.manaHero h3
-{
-  display: flex;
-  flex-direction: row;
-  font: 2em, bold, capitalize, blue;
-  padding: 3px 3px 3px 3px;
-  margin: 3px 3px 3px 3px;
-  background-color: cyan;
-  border: 2px solid black;
-  border-radius: 6px;
-}
-
-vieMonstres
-{
-  display: flex;
-  justify-content: space-between;
-  border: 4px solid yellow;
-}
-
-.vieMonstre h3
-{
-  display: flex;
-  flex-direction: row;
-  font: 2em, bold, capitalize;
-  padding: 3px 3px 3px 3px;
-  margin: 3px 3px 3px 3px;
-  background-color: red;
-  border: 2px solid black;
-  border-radius: 6px;
-}
-
-combat
-{
-  width : 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  border: 4px solid green;
-}
-
-heros
-{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 4px solid gray;
-}
-
-colonneHero1
-{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  border: 4px solid purple;
-}
-
-colonneHero2
-{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  border: 4px solid purple;
-}
-
-colonneMonstres1
-{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  border: 4px solid purple;
-}
-
-colonneMonstres2
-{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  border: 4px solid purple;
-}
-
-monstres
-{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 4px solid gray;
-}
-
-heros h2
-{
-    background-color: yellowgreen;
-    text-align: center;
-    font: 2em, bold, capitalize, blue;
-    padding: 5px 5px 5px 5px;
-    border: 3px solid black;
-    border-radius: 5px;
-}
-
-monstres h2
-{
-    background-color: red;
-    text-align: center;
-    font: 2em, bold, capitalize;
-    padding: 5px 5px 5px 5px;
-    border: 3px solid black;
-    border-radius: 5px;
-}
-
-.spriteHero{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: 2px solid black;
-}
-
-.spriteMonstre{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: 2px solid black;
-}
-
-UI
-{
-  align-self: center;
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  border: 3px solid yellow;
-  width: 50%;
-}
-
-#skillsHero
-{
-  display: flex;
-  justify-content: space-between;
-}
-
-.bouton
-{
-  display: flex;
-  justify-content: center;
-  font: 2em, bold, capitalize;
-  padding: 5px 5px 5px 5px;
-  border: 1px solid black;
-  border-radius: 5px;
-}
-
-.bouton h3
-{
-  visibility : hidden;
-}
-
-#boutonAttaque
-{
-  background-image : url(images/button_Attack.png);
-  background-position : center;
-  background-size: 60px;
-  background-color: #B03333;
-}
-
-#boutonAttaque:hover
-{
-  cursor: pointer;
-}
-
-#boutonDefense
-{
-  background-image : url(images/button_Defense.png);
-  background-position : center;
-  background-size: 60px;
-  background-color: #27821C;
-}
-
-#boutonDefense:hover
-{
-  cursor: pointer;
-}
-
-#boutonPouvoir
-{
-  background-image : url(images/button_Power.png);
   background-repeat: no-repeat;
-  background-position : center;
-  background-size: 60px;
-  background-color: #1C4082;
+  border: 4px solid purple;
 }
 
-#boutonPouvoir:hover
+  #boiteDialogue
+  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 4px solid greenyellow;
+  }
+
+    #imagePersoActif
+    {
+      visibility: hidden;
+      /*background-image: url("images/faceArcher.png");
+      width: 93px;
+      height: 94px;
+      border: 3px solid purple;*/
+    }
+
+    #contenuBoiteDialogue
+    {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      align-self: center;
+      color: #E0E0E0;
+      border: 3px solid black;
+      background-image: url(images/boiteDialogue.png);
+      background-size: 400px 94px;
+      width: 388px;
+      height: 82px;
+      padding: 5px 5px 5px 5px;
+      margin: 5px 5px 5px 5px;
+      border-radius: 5px;
+    }
+
+  #combat
+  {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 4px solid green;
+  }
+
+    #monstres
+    {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 4px solid gray;
+    }
+
+      .colonnes
+      {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        border: 4px solid purple;
+      }
+
+        .monstre
+        {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          border: 2px solid black;
+        }
+
+          .animationMonster:hover
+          {
+            cursor:pointer;
+          }
+
+          .infobulleMonstre
+          {
+            display: flex;
+            background-color: #535252;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding : 0px 10px 10px 10px;
+            border: 2px solid #1A1A1A;
+            border-radius: 20px;
+            opacity: .9;
+          }
+
+            #infobulleChampignon
+            {
+              visibility: hidden;
+            }
+            
+            #infobulleSanglier
+            {
+              visibility: hidden;
+            }
+            
+            #infobulleGeant
+            {
+              visibility: hidden;
+            }
+
+            .nomMonstre
+            {
+              background-color: red;
+              text-align: center;
+              font: 2em, bold, capitalize;
+              padding: 5px 5px 5px 5px;
+              border: 3px solid black;
+              border-radius: 5px;
+            }
+
+            .vieMonstre
+            {
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              font: 2em, bold, capitalize;
+              padding: 3px 3px 3px 3px;
+              margin: 3px 3px 3px 3px;
+              background-color: red;
+              border: 2px solid black;
+              border-radius: 6px;
+            }
+
+    #heros
+    {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 4px solid gray;
+    }
+
+      .spriteHero
+      {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid black;
+      }
+
+        .indicateur
+        {
+          width: 25%;
+          height: 25%;
+          border: 2px solid yellow;
+        }
+
+        #indicateurArcher
+        {
+          visibility: hidden;
+        }
+
+        #indicateurMage
+        {
+          visibility: hidden;
+        }
+
+        #indicateurGuerrier
+        {
+          visibility: hidden;
+        }
+
+        #indicateurAssassin
+        {
+          visibility: hidden;
+        }
+
+#UI
 {
-  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 4px solid orangered;
 }
 
-boiteDialogue
-{
-  color: white;
-  text-align: center;
-  align-self: center;
-  border: 3px solid black;
-  background-image: url(images/boiteDialogue.png);
-  padding: 5px 5px 5px 5px;
-  margin: 5px 5px 5px 5px;
-  border-radius: 5px;
-  width: 400px;
-}
+  #skillHeroes
+  {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 4px solid saddlebrown;
+  }
+
+    .action
+    {
+      display: flex;
+      justify-content: flex-end;
+      border: 4px solid yellow;
+    }
+
+      .infobulleAction
+      {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        visibility: visible;
+        border: 4px solid blueviolet;
+      }
+
+      #infobulleAttaque
+      {
+        visibility: hidden;
+      }
+
+      #infobulleDefense
+      {
+        visibility: hidden;
+      }
+
+      #infobullePouvoir
+      {
+        visibility: hidden;
+      }
+      
+      button
+      {
+        width: 100px;
+        height: 100px;
+      }
+
+      .bouton h3
+      {
+        visibility : hidden;
+      }
+
+        #boutonAttaque
+        {
+          background-image : url(images/button_Attack.png);
+          background-position : center;
+          background-repeat : no-repeat;
+          background-size: 90px;
+          background-color: #B03333;
+        }
+
+        #boutonAttaque:hover
+        {
+          cursor: pointer;
+        }
+
+        #boutonDefense
+        {
+          background-image : url(images/button_Defense.png);
+          background-position : center;
+          background-repeat : no-repeat;
+          background-size: 90px;
+          background-color: #27821C;
+        }
+
+        #boutonDefense:hover
+        {
+          cursor: pointer;
+        }
+
+        #boutonPouvoir
+        {
+          background-image : url(images/button_Power.png);
+          background-repeat: no-repeat;
+          background-position : center;
+          background-repeat : no-repeat;
+          background-size: 90px;
+          background-color: #1C4082;
+        }
+
+        #boutonPouvoir:hover
+        {
+          cursor: pointer;
+        }
+  
+  #statsHeroes
+  {
+    display: flex;
+    flex-direction: column;
+    border: 4px solid blue;
+  }
+
+    .uiPerso
+    {
+      display: flex;
+      justify-content: flex-start;
+      border: 4px solid orange;
+    }
+
+      #imageArcher
+      {
+        background-image: url("images/faceArcher.png");
+        width: 93px;
+        height: 94px;
+        background-repeat: no-repeat;
+        background-position : center;
+        background-size: 60px;
+        border: 3px solid purple;
+      }
+      
+      #imageMage
+      {
+        background-image: url("images/faceMage.png");
+        width: 93px;
+        height: 94px;
+        background-repeat: no-repeat;
+        background-position : center;
+        background-size: 60px;
+        border: 3px solid purple;
+      }
+
+      #imageGuerrier
+      {
+        background-image: url("images/faceGuerrier.png");
+        width: 93px;
+        height: 94px;
+        background-repeat: no-repeat;
+        background-position : center;
+        background-size: 60px;
+        border: 3px solid purple;
+      }
+
+      #imageAssassin
+      {
+        background-image: url("images/faceAssassin.png");
+        width: 93px;
+        height: 94px;
+        background-repeat: no-repeat;
+        background-position : center;
+        background-size: 60px;
+        border: 3px solid purple;
+      }
+
+      .infosPerso
+      {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border: 4px solid pink;
+      }
+
+        .nomPerso
+        {
+          background-color: yellowgreen;
+          text-align: center;
+          font: 2em, bold, capitalize, blue;
+          padding: 5px 5px 5px 5px;
+          border: 3px solid black;
+          border-radius: 5px;
+        }
+
+        .statsPerso
+        {
+          display: flex;
+          justify-content: center;
+          border: 4px solid cyan;
+        }
+
+          .vieHero
+          {
+            display: flex;
+            flex-direction: row;
+            font: 2em, bold, capitalize, blue;
+            padding: 3px 3px 3px 3px;
+            margin: 3px 3px 3px 3px;
+            background-color: yellowgreen;
+            border: 2px solid black;
+            border-radius: 6px;
+          }
+
+          .manaHero
+          {
+            display: flex;
+            flex-direction: row;
+            font: 2em, bold, capitalize, blue;
+            padding: 3px 3px 3px 3px;
+            margin: 3px 3px 3px 3px;
+            background-color: cyan;
+            border: 2px solid black;
+            border-radius: 6px;
+          }
+
+
