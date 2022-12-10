@@ -197,13 +197,21 @@ UI
   justify-content: center;
   font: 2em, bold, capitalize;
   padding: 5px 5px 5px 5px;
-  border: 3px solid pink;
+  border: 1px solid black;
   border-radius: 5px;
+}
+
+.bouton h3
+{
+  visibility : hidden;
 }
 
 #boutonAttaque
 {
-  background-color: red;
+  background-image : url(images/button_Attack.png);
+  background-position : center;
+  background-size: 60px;
+  background-color: #B03333;
 }
 
 #boutonAttaque:hover
@@ -213,7 +221,10 @@ UI
 
 #boutonDefense
 {
-  background-color: green;
+  background-image : url(images/button_Defense.png);
+  background-position : center;
+  background-size: 60px;
+  background-color: #27821C;
 }
 
 #boutonDefense:hover
@@ -223,7 +234,11 @@ UI
 
 #boutonPouvoir
 {
-  background-color: blue;
+  background-image : url(images/button_Power.png);
+  background-repeat: no-repeat;
+  background-position : center;
+  background-size: 60px;
+  background-color: #1C4082;
 }
 
 #boutonPouvoir:hover
@@ -233,10 +248,11 @@ UI
 
 boiteDialogue
 {
+  color: white;
   text-align: center;
   align-self: center;
   border: 3px solid black;
-  background-color: grey;
+  background-image: url(images/boiteDialogue.png);
   padding: 5px 5px 5px 5px;
   margin: 5px 5px 5px 5px;
   border-radius: 5px;

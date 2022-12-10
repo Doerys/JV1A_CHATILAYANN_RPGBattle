@@ -516,6 +516,9 @@
                 // Reapparition des boutons
                 showButtons(boutonAttaque, boutonDefense, boutonPouvoir);
 
+                // On réactive tous les boutons
+                enableActions()
+
                 // Stocke la liste d'actions permises pour le perso actif
                 listActionsActiveChara = whichCharacterPlay(turn);
 
@@ -618,10 +621,10 @@
         console.log("Nombre de monstres morts : " + deadMobScore);
 
         // Reini les capacites permises au perso actif pour le prochain tours
-        actionAttackDone(listActionsActiveChara);
+        listActionsActiveChara = actionAttackDone(listActionsActiveChara);
 
         // On recupere la liste d'actions associe au perso actif
-        whichCharacterHavePlayed(listActionsActiveChara, turn);
+        whichCharacterHavePlayed(turn);
 
         // verification si victoire
         victory(contenuBoiteDialogue, deadMobScore);
@@ -641,10 +644,10 @@
         // feedbacks visuels
 
         // Reini les capacites permises pour le prochain tours
-        actionDefenseDone(listActionsActiveChara);
+        listActionsActiveChara = actionDefenseDone(listActionsActiveChara);
 
         // On recupere la liste d'actions associe au perso actif
-        whichCharacterHavePlayed(listActionsActiveChara, turn);
+        whichCharacterHavePlayed(turn);
         
         // stoppe le jeu en cas de victoire, ou relance un nouveau tour
         stopTheGame(deadMobScore, deadHeroScore);
@@ -661,10 +664,10 @@
         whichCharacterPower(turn);
 
         // Reini les capacites permises pour le prochain tours
-        actionPowerDone(listActionsActiveChara);
+        listActionsActiveChara = actionPowerDone(listActionsActiveChara);
 
         // On recupere la liste d'actions associe au perso actif
-        whichCharacterHavePlayed(listActionsActiveChara, turn);
+        whichCharacterHavePlayed(turn);
 
         // stoppe le jeu en cas de victoire, ou relance un nouveau tour
         stopTheGame(deadMobScore, deadHeroScore);
@@ -889,6 +892,7 @@ function whichCharacterPlay(tour){
     
     if(tour == 1){
         listPersoActif = listActionsArcher;
+        console.log("liste archer");
     }
     if(tour == 2){
         listPersoActif = listActionsMage;
@@ -903,31 +907,44 @@ function whichCharacterPlay(tour){
     return listPersoActif;
 }
 
+// Réagence les boutons pour le prochain tour
+function enableActions(){
+    boutonAttaque.disabled = false;
+    boutonAttaque.style.backgroundColor = "#B03333";
+    boutonDefense.disabled = false;
+    boutonDefense.style.backgroundColor = "#27821C";
+    boutonPouvoir.disabled = false;
+    boutonPouvoir.style.backgroundColor = "#1C4082";
+}
+
 //Enleve les actions impossibles a faire
 function disableActions(){
 
-    if(listActionsActiveChara == [1, 0, 0]){
-        removeOneButton(boutonAttaque);
+    if(listActionsActiveChara[0] == 1){
+        boutonAttaque.disabled = true;
+        boutonAttaque.style.backgroundColor = "grey";
     }
 
-    if(listActionsActiveChara == [0, 1, 0]){
-        removeOneButton(boutonDefense);
+    if(listActionsActiveChara[1] == 1){
+        boutonDefense.disabled = true;
+        boutonDefense.style.backgroundColor = "grey";
     }
 
-    if(listActionsActiveChara == [0, 0, 1]){
-        removeOneButton(boutonPouvoir);
+    if(listActionsActiveChara[2] == 1){
+        boutonPouvoir.disabled = true;
+        boutonPouvoir.style.backgroundColor = "grey";
     }
 
-    if(manaActiveChara == 0){
-        removeOneButton(boutonPouvoir);
+    if(manaActiveChara.innerHTML == 0){
+        boutonPouvoir.disabled = true;
+        boutonPouvoir.style.backgroundColor = "grey";
+        console.log("plus de mana");
     }
-
-    console.log("On retire un bouton");
 }
 
 // Retire un bouton
 function removeOneButton(boutonAEnlever){
-    boutonAEnlever.style.display = 'none';
+    document.getElementById("mySelect").disabled = true;
 }
 
 // Change actions
@@ -963,6 +980,7 @@ function whichCharacterHavePlayed(tour){
     if(tour == 4){
         listActionsAssassin = returnActionsAssassin(listActionsActiveChara);
     }
+
 }
 
 function returnActionsArcher(listePersoActif){
@@ -997,6 +1015,7 @@ contenuBoiteDialogue = document.getElementById("contenuBoiteDialogue");
 // ~~ variable non monstre a enlever, pour la remplacer quand les monstres pourront etre select ~~
 
 ActiveCharaAlive = true;
+
 victimCharaAlive = true;
 listActionsActiveChara = [0, 0, 0];
 deadMobScore = 0;
@@ -1022,8 +1041,8 @@ fireCooldown = [0, 0, 0];
 fireState = 0;
 
 
-listActionsArcher = [0, 0, 0];
-listActionsMage = [0, 0, 0];
+listActionsArcher = [1, 0, 0];
+listActionsMage = [0, 1, 0];
 listActionsGuerrier = [0, 0, 0];
 listActionsAssassin = [0, 0, 0];
 
@@ -1035,7 +1054,7 @@ turn = 1;
     characterSelection();
 
     // On lance le tour de joueur
-    startHeroPhase();
+    startHeroPhase(heroSide);
 
     //Message boite de dialogue
     messageDebutTour(turn, contenuBoiteDialogue, nomActiveChara);
