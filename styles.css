@@ -15,7 +15,6 @@ body
   justify-content: center;
   align-items: center;
   background-color: #7F4349; 
-  border: 4px solid black
 }
 
 #scene
@@ -23,11 +22,12 @@ body
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background-image: url(images/backgroundScene3.png);
-  width: 1703px;
-  height: 959px;
+  background-image: url(images/backgroundScene5.png);
+  background-position: center;
+  width: 1252px;
+  height: 705px;
   background-repeat: no-repeat;
-  border: 4px solid purple;
+  border: 4px solid #161011;
 }
 
   #boiteDialogue
@@ -35,16 +35,12 @@ body
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 4px solid greenyellow;
   }
 
     #imagePersoActif
     {
       visibility: hidden;
-      /*background-image: url("images/faceArcher.png");
-      width: 93px;
-      height: 94px;
-      border: 3px solid purple;*/
+      border : 2px solid black;
     }
 
     #contenuBoiteDialogue
@@ -55,7 +51,6 @@ body
       text-align: center;
       align-self: center;
       color: #E0E0E0;
-      border: 3px solid black;
       background-image: url(images/boiteDialogue.png);
       background-size: 400px 94px;
       width: 388px;
@@ -68,9 +63,8 @@ body
   #combat
   {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    border: 4px solid green;
   }
 
     #monstres
@@ -78,7 +72,6 @@ body
       display: flex;
       justify-content: center;
       align-items: center;
-      border: 4px solid gray;
     }
 
       .colonnes
@@ -86,7 +79,6 @@ body
         display: flex;
         justify-content: center;
         flex-direction: column;
-        border: 4px solid purple;
       }
 
         .monstre
@@ -95,8 +87,13 @@ body
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          border: 2px solid black;
         }
+
+          .animationMonster
+          {
+            width: 75%;
+            height: 75%;
+          }
 
           .animationMonster:hover
           {
@@ -110,6 +107,7 @@ body
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            width: 150px;
             padding : 0px 10px 10px 10px;
             border: 2px solid #1A1A1A;
             border-radius: 20px;
@@ -133,9 +131,10 @@ body
 
             .nomMonstre
             {
-              background-color: red;
+              background-color: #CB4239;
+              font-size: 1.5em;
+              text-transform: capitalize;
               text-align: center;
-              font: 2em, bold, capitalize;
               padding: 5px 5px 5px 5px;
               border: 3px solid black;
               border-radius: 5px;
@@ -145,11 +144,12 @@ body
             {
               display: flex;
               flex-direction: row;
+              font-size: 1em;
+              text-transform: capitalize;
               justify-content: center;
-              font: 2em, bold, capitalize;
               padding: 3px 3px 3px 3px;
               margin: 3px 3px 3px 3px;
-              background-color: red;
+              background-color: #CB4239;
               border: 2px solid black;
               border-radius: 6px;
             }
@@ -159,7 +159,6 @@ body
       display: flex;
       justify-content: center;
       align-items: center;
-      border: 4px solid gray;
     }
 
       .spriteHero
@@ -168,14 +167,18 @@ body
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        border: 2px solid black;
       }
+
+        .animationPerso
+        {
+          width: 75%;
+          height: 75%;
+        }
 
         .indicateur
         {
-          width: 25%;
-          height: 25%;
-          border: 2px solid yellow;
+          width: 15%;
+          height: 15%;
         }
 
         #indicateurArcher
@@ -203,7 +206,11 @@ body
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border: 4px solid orangered;
+  background-color: #C2C2C2;
+  width: 1252px;
+  border-left: 4px solid #161011;
+  border-right: 4px solid #161011;
+  border-bottom: 4px solid #161011;
 }
 
   #skillHeroes
@@ -211,44 +218,59 @@ body
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: 4px solid saddlebrown;
   }
 
     .action
     {
       display: flex;
       justify-content: flex-end;
-      border: 4px solid yellow;
     }
 
       .infobulleAction
       {
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
+
+        justify-content: space-around;
+
+        text-align: right;
+        align-self: right;
+
+        word-wrap : normal;
+
         visibility: visible;
-        border: 4px solid blueviolet;
+        width : 350px;
+        padding-right: 15px;
       }
 
       #infobulleAttaque
       {
+        background-color: #B03333;
+        opacity: .9;
+        border-radius: 25px 0px 0px 25px;
         visibility: hidden;
       }
 
       #infobulleDefense
       {
+        background-color: #27821C;
+        opacity: .9;
+        border-radius: 25px 0px 0px 25px;
         visibility: hidden;
       }
 
       #infobullePouvoir
       {
+        background-color: #4396E1;
+        opacity: .9;
+        border-radius: 25px 0px 0px 25px;
         visibility: hidden;
       }
       
       button
       {
-        width: 100px;
-        height: 100px;
+        width: 60px;
+        height: 60px;
       }
 
       .bouton h3
@@ -261,7 +283,7 @@ body
           background-image : url(images/button_Attack.png);
           background-position : center;
           background-repeat : no-repeat;
-          background-size: 90px;
+          background-size: 50px;
           background-color: #B03333;
         }
 
@@ -275,7 +297,7 @@ body
           background-image : url(images/button_Defense.png);
           background-position : center;
           background-repeat : no-repeat;
-          background-size: 90px;
+          background-size: 50px;
           background-color: #27821C;
         }
 
@@ -290,8 +312,8 @@ body
           background-repeat: no-repeat;
           background-position : center;
           background-repeat : no-repeat;
-          background-size: 90px;
-          background-color: #1C4082;
+          background-size: 50px;
+          background-color: #4396E1;
         }
 
         #boutonPouvoir:hover
@@ -302,59 +324,72 @@ body
   #statsHeroes
   {
     display: flex;
+    flex-direction: row;
+    border-left: 4px solid #161011;
+  }
+
+  .colonneStats
+  {
+    display: flex;
     flex-direction: column;
-    border: 4px solid blue;
+  }
+
+  #colonneStats2
+  {
+    padding-left: 25px;
   }
 
     .uiPerso
     {
       display: flex;
       justify-content: flex-start;
-      border: 4px solid orange;
+      align-items: center;
+      padding: 10px 10px 10px 10px;
     }
+
+    .imagePerso
+    {
+      padding-right: 10px;
+    } 
 
       #imageArcher
       {
         background-image: url("images/faceArcher.png");
-        width: 93px;
-        height: 94px;
+        width: 60px;
+        height: 60px;
         background-repeat: no-repeat;
         background-position : center;
         background-size: 60px;
-        border: 3px solid purple;
       }
       
       #imageMage
       {
         background-image: url("images/faceMage.png");
-        width: 93px;
-        height: 94px;
+        width: 60px;
+        height: 60px;
         background-repeat: no-repeat;
         background-position : center;
         background-size: 60px;
-        border: 3px solid purple;
       }
 
       #imageGuerrier
       {
         background-image: url("images/faceGuerrier.png");
-        width: 93px;
-        height: 94px;
+        width: 60px;
+        height: 60px;
         background-repeat: no-repeat;
         background-position : center;
         background-size: 60px;
-        border: 3px solid purple;
       }
 
       #imageAssassin
       {
         background-image: url("images/faceAssassin.png");
-        width: 93px;
-        height: 94px;
+        width: 60px;
+        height: 60px;
         background-repeat: no-repeat;
         background-position : center;
         background-size: 60px;
-        border: 3px solid purple;
       }
 
       .infosPerso
@@ -362,12 +397,10 @@ body
         display: flex;
         flex-direction: column;
         justify-content: center;
-        border: 4px solid pink;
       }
 
         .nomPerso
         {
-          background-color: yellowgreen;
           text-align: center;
           font: 2em, bold, capitalize, blue;
           padding: 5px 5px 5px 5px;
@@ -375,11 +408,30 @@ body
           border-radius: 5px;
         }
 
+        #nomHero1
+        {
+          background-color: #9DA928;
+        }
+
+        #nomHero2
+        {
+          background-color: #A92828;
+        }
+
+        #nomHero3
+        {
+          background-color: #6F6F6F;
+        }
+
+        #nomHero4
+        {
+          background-color: #EEEEEE;
+        }
+
         .statsPerso
         {
           display: flex;
           justify-content: center;
-          border: 4px solid cyan;
         }
 
           .vieHero
@@ -387,9 +439,11 @@ body
             display: flex;
             flex-direction: row;
             font: 2em, bold, capitalize, blue;
+            justify-content: center;
+            width: 75px;
             padding: 3px 3px 3px 3px;
             margin: 3px 3px 3px 3px;
-            background-color: yellowgreen;
+            background-color: #57B947;
             border: 2px solid black;
             border-radius: 6px;
           }
@@ -399,9 +453,11 @@ body
             display: flex;
             flex-direction: row;
             font: 2em, bold, capitalize, blue;
+            justify-content: center;
+            width: 75px;
             padding: 3px 3px 3px 3px;
             margin: 3px 3px 3px 3px;
-            background-color: cyan;
+            background-color: #47E1DD;
             border: 2px solid black;
             border-radius: 6px;
           }

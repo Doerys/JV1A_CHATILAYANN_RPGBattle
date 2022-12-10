@@ -20,9 +20,10 @@
                     <div class = "colonnes" id = "colonneMonstres1">
                         <div class = "monstre" id = monstre3>
                             <div class = infobulleMonstre id = "infobulleGeant">
-                                <h2><div class = "nomMonstre" id = "nomMonstre3">Geant</div></h2>
+                                <div class = "nomMonstre" id = "nomMonstre3">Geant</div>
+                                
                                 <div class = "vieMonstre">
-                                    <div id = vieGeant>1</div>/20
+                                    <div id = vieGeant>40</div>/40
                                 </div>
                             </div>
                             <div id = "stateGeant"></div> 
@@ -34,9 +35,9 @@
 
                         <div class = "monstre" id = monstre1>
                             <div class = infobulleMonstre id = "infobulleChampignon">
-                                <h2><div class = "nomMonstre" id = "nomMonstre1">Champignon</div></h2>
+                                <div class = "nomMonstre" id = "nomMonstre1">Champignon</div>
                                 <div class = "vieMonstre">
-                                    <div id = vieChampignon>30</div>/10
+                                    <div id = vieChampignon>30</div>/30
                                 </div>
                             </div>
                             <div id = "stateChampignon"></div> 
@@ -45,9 +46,9 @@
 
                         <div class = "monstre" id = monstre2>
                             <div class = infobulleMonstre id = "infobulleSanglier">
-                                <h2><div class = "nomMonstre" id = "nomMonstre2">Sanglier</div></h2>
+                                <div class = "nomMonstre" id = "nomMonstre2">Sanglier</div>
                                 <div class = "vieMonstre">
-                                    <div id = vieSanglier>1</div>/10
+                                    <div id = vieSanglier>30</div>/30
                                 </div>
                             </div>
                             <div id = "stateSanglier"></div> 
@@ -63,13 +64,13 @@
                         <div class = "spriteHero" id = "heros1">
                             <img class = "indicateur" id = "indicateurArcher" src="images/indicateur5.gif" alt="indicateur"/>
                             <div id = "shieldArcher"></div>
-                            <img id = "animationArcher" src="images/idleArcher.gif" alt= "Archer"/>
+                            <img class = animationPerso id = "animationArcher" src="images/idleArcher.gif" alt= "Archer"/>
                         </div>
 
                         <div class = "spriteHero" id = "heros2">
                             <img class = "indicateur" id = "indicateurMage" src="images/indicateur5.gif" alt="indicateur"/>
                             <div id = "shieldMage"></div>
-                            <img id = "animationMage" src="images/idleMage.gif" alt= "Mage"/>
+                            <img class = animationPerso id = "animationMage" src="images/idleMage.gif" alt= "Mage"/>
                         </div>
                     </div>
 
@@ -77,13 +78,13 @@
                         <div class = "spriteHero" id = "heros3">
                             <img class = "indicateur" id = "indicateurGuerrier" src="images/indicateur5.gif" alt="indicateur"/>
                             <div id = "shieldGuerrier"></div>
-                            <img id = "animationGuerrier" src="images/idleGuerrier.gif" alt= "Guerrier"/>
+                            <img class = animationPerso id = "animationGuerrier" src="images/idleGuerrier.gif" alt= "Guerrier"/>
                         </div>
 
                         <div class = "spriteHero" id = "heros4">
                             <img class = "indicateur" id = "indicateurAssassin" src="images/indicateur5.gif" alt="indicateur"/>
                             <div id = "shieldAssassin"></div>
-                            <img id = "animationAssassin" src="images/idleAssassin.gif" alt= "Assassin"/>
+                            <img class = animationPerso id = "animationAssassin" src="images/idleAssassin.gif" alt= "Assassin"/>
                         </div>
                     </div>
                 
@@ -130,75 +131,80 @@
 
             <div id = "statsHeroes">
 
-                <div class = "uiPerso" id = "uiArcher">
+                <div class = "colonneStats" id = "colonneStats1">
 
-                    <div id = "imageArcher"></div>
-                    <div class = "infosPerso" id = "infosArcher">
-                        <div class = "nomPerso" id = "nomHero1">Archer</div>
+                    <div class = "uiPerso" id = "uiArcher">
 
-                        <div class = "statsPerso" id = "statsArcher">
-                            <div class = "vieHero">
-                                <div id = vieArcher>8</div>/8
-                            </div>
+                        <div class = imagePerso id = "imageArcher"></div>
+                        <div class = "infosPerso" id = "infosArcher">
+                            <div class = "nomPerso" id = "nomHero1">Archer</div>
 
-                            <div class = "manaHero">
-                                <div id = manaArcher>10</div>/10
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
+                            <div class = "statsPerso" id = "statsArcher">
+                                <div class = "vieHero">
+                                    <div id = vieArcher>30</div>/30
+                                </div>
 
-                <div class = "uiPerso" id = "uiMage">
-
-                    <div id = "imageMage"></div>
-                    <div class = "infosPerso" id = "infosMage">
-                        <div class = "nomPerso" id = "nomHero2">Mage</div>
-
-                        <div class = "statsPerso" id = "statsMage">
-                            <div class = "vieHero">
-                                <div id = vieMage>8</div>/8
-                            </div>
-
-                            <div class = "manaHero">
-                                <div id = manaMage>10</div>/10
+                                <div class = "manaHero">
+                                    <div id = manaArcher>15</div>/15
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class = "uiPerso" id = "uiGuerrier">
+                    <div class = "uiPerso" id = "uiMage">
 
-                    <div id = "imageGuerrier"></div>
-                    <div class = "infosPerso" id = "infosGuerrier">
-                        <div class = "nomPerso" id = "nomHero3">Guerrier</div>
+                        <div class = imagePerso id = "imageMage"></div>
+                        <div class = "infosPerso" id = "infosMage">
+                            <div class = "nomPerso" id = "nomHero2">Mage</div>
 
-                        <div class = "statsPerso" id = "statsGuerrier">
-                            <div class = "vieHero">
-                                <div id = vieGuerrier>8</div>/8
-                            </div>
-                            
-                            <div class = "manaHero">
-                                <div id = manaGuerrier>10</div>/10
+                            <div class = "statsPerso" id = "statsMage">
+                                <div class = "vieHero">
+                                    <div id = vieMage>30</div>/30
+                                </div>
+
+                                <div class = "manaHero">
+                                    <div id = manaMage>15</div>/15
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <div class = "colonneStats" id = "colonneStats2">
+                    <div class = "uiPerso" id = "uiGuerrier">
 
-                <div class = "uiPerso" id = "uiAssassin">
+                        <div class = imagePerso id = "imageGuerrier"></div>
+                        <div class = "infosPerso" id = "infosGuerrier">
+                            <div class = "nomPerso" id = "nomHero3">Guerrier</div>
 
-                    <div id = "imageAssassin"></div>
-                    <div class = "infosPerso" id = "infosAssassin">
-                        <div class = "nomPerso" id = "nomHero4">Assassin</div>
-
-                        <div class = "statsPerso" id = "statsAssassin">
-                            <div class = "vieHero">
-                                <div id = vieAssassin>8</div>/8
+                            <div class = "statsPerso" id = "statsGuerrier">
+                                <div class = "vieHero">
+                                    <div id = vieGuerrier>30</div>/30
+                                </div>
+                                
+                                <div class = "manaHero">
+                                    <div id = manaGuerrier>15</div>/15
+                                </div>
                             </div>
+                        </div>
+                    </div>
 
-                            <div class = "manaHero">
-                                <div id = manaAssassin>10</div>/10
+
+                    <div class = "uiPerso" id = "uiAssassin">
+
+                        <div class = imagePerso id = "imageAssassin"></div>
+                        <div class = "infosPerso" id = "infosAssassin">
+                            <div class = "nomPerso" id = "nomHero4">Assassin</div>
+
+                            <div class = "statsPerso" id = "statsAssassin">
+                                <div class = "vieHero">
+                                    <div id = vieAssassin>30</div>/30
+                                </div>
+
+                                <div class = "manaHero">
+                                    <div id = manaAssassin>15</div>/15
+                                </div>
                             </div>
                         </div>
                     </div>

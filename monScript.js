@@ -17,7 +17,7 @@
         
         // Message a chaque debut de tour
         function messageDebutTour(message, persoActif){
-            message.innerHTML = "C'est au tour de " + persoActif + " d'attaquer.";
+            message.innerHTML = "C'est au tour de " + persoActif + " d'agir.";
         }
 
         // Verifie si le tour actuel est un tour de heros ou un tour de monstre
@@ -351,46 +351,46 @@
 
             if(tour == 1){
                 indicArcher.setAttribute("src", "images/shieldUp.gif");
-                indicArcher.style.height = "102px";
-                indicArcher.style.width = "102px";
+                indicArcher.style.height = "61px";
+                indicArcher.style.width = "61px";
             }
             if(tour == 2){
                 indicMage.setAttribute("src", "images/shieldUp.gif");
-                indicMage.style.height = "102px";
-                indicMage.style.width = "102px";
+                indicMage.style.height = "61px";
+                indicMage.style.width = "61px";
             }
             if(tour == 3){
                 indicGuerrier.setAttribute("src", "images/shieldUp.gif");
-                indicGuerrier.style.height = "117px";
-                indicGuerrier.style.width = "117px";
+                indicGuerrier.style.height = "71px";
+                indicGuerrier.style.width = "71px";
             }
             if(tour == 4){
                 indicAssassin.setAttribute("src", "images/shieldUp.gif");
-                indicAssassin.style.height = "117px";
-                indicAssassin.style.width = "117px";
+                indicAssassin.style.height = "71px";
+                indicAssassin.style.width = "71px";
             }
         
             setTimeout(function(){
                 
                 //Reboot archer
                 indicArcher.setAttribute("src", "images/indicateur5.gif");
-                indicArcher.style.height = "25%";
-                indicArcher.style.width = "25%";
+                indicArcher.style.height = "15%";
+                indicArcher.style.width = "15%";
         
                 //Reboot mage
                 indicMage.setAttribute("src", "images/indicateur5.gif");
-                indicMage.style.height = "25%";
-                indicMage.style.width = "25%";
+                indicMage.style.height = "15%";
+                indicMage.style.width = "15%";
         
                 //Reboot guerrier        
                 indicGuerrier.setAttribute("src", "images/indicateur5.gif");
-                indicGuerrier.style.height = "25%";
-                indicGuerrier.style.width = "25%";
+                indicGuerrier.style.height = "15%";
+                indicGuerrier.style.width = "15%";
         
                 //Reboot assassin
                 indicAssassin.setAttribute("src", "images/indicateur5.gif");
-                indicAssassin.style.height = "25%";
-                indicAssassin.style.width = "25%";
+                indicAssassin.style.height = "15%";
+                indicAssassin.style.width = "15%";
                 
                 // on retire l'indicateur
                 removeIndicator();
@@ -515,26 +515,26 @@
             //Bouclier archer
             indicArcher.style.visibility = "visible";
             indicArcher.setAttribute("src", "images/shieldUp.gif");
-            indicArcher.style.height = "102px";
-            indicArcher.style.width = "102px";
+            indicArcher.style.height = "61px";
+            indicArcher.style.width = "61px";
 
             //Bouclier Mage
             indicMage.style.visibility = "visible";
             indicMage.setAttribute("src", "images/shieldUp.gif");
-            indicMage.style.height = "102px";
-            indicMage.style.width = "102px";
+            indicMage.style.height = "61px";
+            indicMage.style.width = "61px";
 
             //Bouclier Guerrier
             indicGuerrier.style.visibility = "visible";
             indicGuerrier.setAttribute("src", "images/shieldUp.gif");
-            indicGuerrier.style.height = "117px";
-            indicGuerrier.style.width = "117px";
+            indicGuerrier.style.height = "71px";
+            indicGuerrier.style.width = "71px";
 
             //Bouclier Assassin
             indicAssassin.style.visibility = "visible";
             indicAssassin.setAttribute("src", "images/shieldUp.gif");
-            indicAssassin.style.height = "117px";
-            indicAssassin.style.width = "117px";
+            indicAssassin.style.height = "71px";
+            indicAssassin.style.width = "71px";
 
             //retour idle
             setTimeout(function() {
@@ -545,23 +545,23 @@
             
                 //Reboot archer
                 indicArcher.setAttribute("src", "images/indicateur5.gif");
-                indicArcher.style.height = "25%";
-                indicArcher.style.width = "25%";
+                indicArcher.style.height = "15%";
+                indicArcher.style.width = "15%";
 
                 //Reboot mage
                 indicMage.setAttribute("src", "images/indicateur5.gif");
-                indicMage.style.height = "25%";
-                indicMage.style.width = "25%";
+                indicMage.style.height = "15%";
+                indicMage.style.width = "15%";
 
                 //Reboot guerrier        
                 indicGuerrier.setAttribute("src", "images/indicateur5.gif");
-                indicGuerrier.style.height = "25%";
-                indicGuerrier.style.width = "25%";
+                indicGuerrier.style.height = "15%";
+                indicGuerrier.style.width = "15%";
 
                 //Reboot assassin
                 indicAssassin.setAttribute("src", "images/indicateur5.gif");
-                indicAssassin.style.height = "25%";
-                indicAssassin.style.width = "25%";
+                indicAssassin.style.height = "15%";
+                indicAssassin.style.width = "15%";
                 
                 removeIndicator();}, 2100);
 
@@ -678,7 +678,7 @@
             boutDef.style.cursor = "pointer";
             
             boutPouvoir.disabled = false;
-            boutPouvoir.style.backgroundColor = "#1C4082";
+            boutPouvoir.style.backgroundColor = "#4396E1";
             boutPouvoir.style.cursor = "pointer";
         }
 
@@ -1015,12 +1015,12 @@
     // --- GESTION DES MORTS ---
 
        // verifie si un monstre est mort
-       function checkDeathMonster(message, hpmonster, ennemiMort, nameDeadMonster, animationDeadMonster) {
+       function checkDeathMonster(message, hpmonster, ennemiMort, nameDeadMonster, animationDeadMonster, nomPerso, degats) {
         hp = hpmonster.innerHTML;
         if (hp <= 0) {
             hpmonster.innerHTML = 0;
             spriteDisparait(animationDeadMonster);
-            message.innerHTML = nameDeadMonster + " a été vaincu.";
+            message.innerHTML = nomPerso + " inflige " + degats + " dégâts et achève le " + nameDeadMonster;
             ennemiMort += 1;
             console.log("monstre mort");
         } else {
@@ -1030,12 +1030,12 @@
         }
 
         // verifie si un monstre est mort
-        function checkDeathCharacter(message, hpCharacter, heroMort){
+        function checkDeathCharacter(message, hpCharacter, heroMort, nomMonstre, degats, nomHeroMort){
             hp = hpCharacter.innerHTML;
             if (hp <= 0) {
                 hpCharacter.innerHTML = 0;
                 spriteDisparait(animationVictim);
-                message.innerHTML = hitCharacter + " a été vaincu.";
+                message.innerHTML = nomMonstre + " occasionne " + degats + " de dégâts à " + nomHeroMort + " qui lâche son dernier souffle.";
                 heroMort += 1;
                 console.log("hero mort");
             } else {
@@ -1138,38 +1138,149 @@
                 console.log("Jeu termine");
             }
             else if (mortsEnnemis != 3 && mortsHeros != 4){
-                
-                // incrementation nouveau tour
-                turn = tourSupp(turn);
 
-                clearTimeout();
+                // Si on est en tour joueur
+                if(turn == 1 || turn == 2 || turn == 3 || turn == 4){
+
+                    // duree apres action attaquer
+                    if(listActionsActiveChara[0] == 1){
+
+
+                        // incrementation nouveau tour
+                        turn = tourSupp(turn);
+
+                        setTimeout(function() {
+
+                            // On retire l'image de la boite de dialogue 
+                            removeImageBoiteDialogue(imageBoiteDialogue);
         
-                setTimeout(function() {
+                            console.log("actions Archer : " + listActionsArcher);
+                            console.log("actions Mage : " +listActionsMage);
+                            console.log("actions Guerrier : " +listActionsGuerrier);
+                            console.log("actions Assassin : " +listActionsAssassin);
+                            console.log("---- Nouveau tour ----");
+        
+                            // verification si tous les persos ont agi
+                            checkReiniTour(turn);
+        
+                            // selection de persos jusqu a un perso en vie            
+                            selectionUntilAlive();
+        
+                            //check si tour ennemi ou allie
+                            heroSide = checkWhichSideTour(turn);
+        
+                            // Si tour de joueur = actionne
+                            startHeroPhase(heroSide);
+                    
+                            // Si tour des monstre = actionne
+                            startMonsterPhase(heroSide);
+                        }, 2000);
+                    }
 
-                    // On retire l'image de la boite de dialogue 
-                    removeImageBoiteDialogue(imageBoiteDialogue);
+                    // duree apres action defense
+                    if(listActionsActiveChara[1] == 1){
 
-                    console.log("actions Archer : " + listActionsArcher);
-                    console.log("actions Mage : " +listActionsMage);
-                    console.log("actions Guerrier : " +listActionsGuerrier);
-                    console.log("actions Assassin : " +listActionsAssassin);
-                    console.log("---- Nouveau tour ----");
+                        // incrementation nouveau tour
+                        turn = tourSupp(turn);
 
-                    // verification si tous les persos ont agi
-                    checkReiniTour(turn);
+                        setTimeout(function() {
 
-                    // selection de persos jusqu a un perso en vie            
-                    selectionUntilAlive();
+                            // On retire l'image de la boite de dialogue 
+                            removeImageBoiteDialogue(imageBoiteDialogue);
+        
+                            console.log("actions Archer : " + listActionsArcher);
+                            console.log("actions Mage : " +listActionsMage);
+                            console.log("actions Guerrier : " +listActionsGuerrier);
+                            console.log("actions Assassin : " +listActionsAssassin);
+                            console.log("---- Nouveau tour ----");
+        
+                            // verification si tous les persos ont agi
+                            checkReiniTour(turn);
+        
+                            // selection de persos jusqu a un perso en vie            
+                            selectionUntilAlive();
+        
+                            //check si tour ennemi ou allie
+                            heroSide = checkWhichSideTour(turn);
+        
+                            // Si tour de joueur = actionne
+                            startHeroPhase(heroSide);
+                    
+                            // Si tour des monstre = actionne
+                            startMonsterPhase(heroSide);
+                        }, 2500);
+                    }
 
-                    //check si tour ennemi ou allie
-                    heroSide = checkWhichSideTour(turn);
+                    // duree apres action pouvoir
+                    if(listActionsActiveChara[2] == 1){
 
-                    // Si tour de joueur = actionne
-                    startHeroPhase(heroSide);
-            
-                    // Si tour des monstre = actionne
-                    startMonsterPhase(heroSide);
-                }, 4000);
+                        // incrementation nouveau tour
+                        turn = tourSupp(turn);
+
+                        setTimeout(function() {
+
+                            // On retire l'image de la boite de dialogue 
+                            removeImageBoiteDialogue(imageBoiteDialogue);
+        
+                            console.log("actions Archer : " + listActionsArcher);
+                            console.log("actions Mage : " +listActionsMage);
+                            console.log("actions Guerrier : " +listActionsGuerrier);
+                            console.log("actions Assassin : " +listActionsAssassin);
+                            console.log("---- Nouveau tour ----");
+        
+                            // verification si tous les persos ont agi
+                            checkReiniTour(turn);
+        
+                            // selection de persos jusqu a un perso en vie            
+                            selectionUntilAlive();
+        
+                            //check si tour ennemi ou allie
+                            heroSide = checkWhichSideTour(turn);
+        
+                            // Si tour de joueur = actionne
+                            startHeroPhase(heroSide);
+                    
+                            // Si tour des monstre = actionne
+                            startMonsterPhase(heroSide);
+                        }, 3800);
+                    }
+                }
+
+                // Si on est en tour monstre
+                else{
+
+                    // incrementation nouveau tour
+                    turn = tourSupp(turn);
+
+                    setTimeout(function() {
+
+                        // On retire l'image de la boite de dialogue 
+                        removeImageBoiteDialogue(imageBoiteDialogue);
+    
+                        console.log("actions Archer : " + listActionsArcher);
+                        console.log("actions Mage : " +listActionsMage);
+                        console.log("actions Guerrier : " +listActionsGuerrier);
+                        console.log("actions Assassin : " +listActionsAssassin);
+                        console.log("---- Nouveau tour ----");
+    
+                        // verification si tous les persos ont agi
+                        checkReiniTour(turn);
+    
+                        // selection de persos jusqu a un perso en vie            
+                        selectionUntilAlive();
+    
+                        //check si tour ennemi ou allie
+                        heroSide = checkWhichSideTour(turn);
+    
+                        // Si tour de joueur = actionne
+                        startHeroPhase(heroSide);
+                
+                        // Si tour des monstre = actionne
+                        startMonsterPhase(heroSide);
+                    }, 2700);
+                }
+        
+                
             }
         }
 
@@ -1198,7 +1309,7 @@
         clearTimeout();
         
         // verification si monstre mort
-        deadMobScore = checkDeathMonster(contenuBoiteDialogue,vieVictim, deadMobScore, hitCharacter, animationVictim);
+        deadMobScore = checkDeathMonster(contenuBoiteDialogue,vieVictim, deadMobScore, hitCharacter, animationVictim, nomActiveChara, damage);
         console.log("Nombre de monstres morts : " + deadMobScore);
 
         // Reini les capacites permises au perso actif pour le prochain tours
@@ -1290,7 +1401,7 @@
 
             // feedbacks visuels
             console.log("Pouvoir archer activé");
-            message.innerHTML = "L'archer tire une flèche de givre, gelant l'ennemi pour le tour actuel.";
+            message.innerHTML = "L'archer tire une flèche de givre, gelant " + hitCharacter + " pour le tour actuel.";
             animationPowerArcher(nomActiveChara, animActiveChara, hitCharacter, animationVictim);
         }
 
@@ -1308,7 +1419,7 @@
 
             // soustraction de la vie du monstre
             attack(damage, vieVictim);
-            message.innerHTML = "Sort de feu ! Le monstre subit " + damage + " et subira des brulures";
+            message.innerHTML = "Sort de feu ! " + hitCharacter + " subit " + damage + " et subira des brulures aux prochains tours !";
 
             // fonction pour appliquer l'effet de brûlure
             applyFire(hitCharacter, fireCooldown);
@@ -1318,7 +1429,7 @@
             animationPowerMage(nomActiveChara, animActiveChara, hitCharacter, animationVictim);
 
             // verification si monstre mort
-            deadMobScore = checkDeathMonster(contenuBoiteDialogue, vieVictim, deadMobScore, hitCharacter, animationVictim);
+            deadMobScore = checkDeathMonster(contenuBoiteDialogue, vieVictim, deadMobScore, hitCharacter, animationVictim, nomActiveChara, damage);
             console.log("Nombre de monstres morts : " + deadMobScore);
 
             // verification si victoire
@@ -1368,13 +1479,13 @@
             attack(damage, vieCibleAssassin3);
 
             // feedbacks visuels
-            message.innerHTML = "L'assassin charge son épée. Sa lame frappe l'ensemble des monstres !";
+            message.innerHTML = "L'assassin charge son épée. Sa lame frappe l'ensemble des monstres, infligeant à chacun " + damage + " de dégâts !";
             animationPowerAssassin(nomActiveChara, animActiveChara, cibleAssassin1, cibleAssassin2, cibleAssassin3, animCibleAssassin1, animCibleAssassin2, animCibleAssassin3);
             
             // verification si monstre mort
-            deadMobScore = checkDeathMonster(contenuBoiteDialogue,vieCibleAssassin1, deadMobScore, cibleAssassin1, animCibleAssassin1);
-            deadMobScore = checkDeathMonster(contenuBoiteDialogue,vieCibleAssassin2, deadMobScore, cibleAssassin2, animCibleAssassin2);
-            deadMobScore = checkDeathMonster(contenuBoiteDialogue,vieCibleAssassin3, deadMobScore, cibleAssassin3, animCibleAssassin3);
+            deadMobScore = checkDeathMonster(contenuBoiteDialogue,vieCibleAssassin1, deadMobScore, cibleAssassin1, animCibleAssassin1, nomActiveChara, damage);
+            deadMobScore = checkDeathMonster(contenuBoiteDialogue,vieCibleAssassin2, deadMobScore, cibleAssassin2, animCibleAssassin2, nomActiveChara, damage);
+            deadMobScore = checkDeathMonster(contenuBoiteDialogue,vieCibleAssassin3, deadMobScore, cibleAssassin3, animCibleAssassin3, nomActiveChara, damage);
 
             console.log("Nombre de monstres morts : " + deadMobScore);
 
@@ -1395,29 +1506,56 @@
 
             // Application de la valeur de brulure au monstre qui attaque
             fireState = pickFire(nomActiveChara, fireCooldown);
-            
-            // degats de brulure si brulure
-            burn(fireState);
 
-            // Application de la valeur de gel au monstre qui attaque
-            iceState = pickIce(nomActiveChara, iceList);
+            setTimeout(function(){
+                
+                // Si monstre brule, + de temps accorde aux animations
+                if (fireState > 0){
+                    burn(contenuBoiteDialogue);
 
-            // Application de la valeur de defense au heros cible.
-            victimDef = pickShield(hitCharacter, heroesDef);
+                    setTimeout(function(){
+                    // Application de la valeur de gel au monstre qui attaque
+                    iceState = pickIce(nomActiveChara, iceList);
 
-            // verification si le perso cible a une defense. Si non, enclenche une attaque.
-            examStates(nomActiveChara, hitCharacter, iceState, victimDef, contenuBoiteDialogue);
-            
-            // verification si hero mort
-            deadHeroScore = checkDeathCharacter(contenuBoiteDialogue, vieVictim, deadHeroScore);
-            console.log("Nombre de heros morts : " + deadHeroScore);
+                    // Application de la valeur de defense au heros cible.
+                    victimDef = pickShield(hitCharacter, heroesDef);
 
-            // verification si defaite
-            
-            gameOver(contenuBoiteDialogue, deadHeroScore);
+                    // verification si le perso cible a une defense. Si non, enclenche une attaque.
+                    examStates(nomActiveChara, hitCharacter, iceState, victimDef, contenuBoiteDialogue);
+                    
+                    // verification si hero mort
+                    deadHeroScore = checkDeathCharacter(contenuBoiteDialogue, vieVictim, deadHeroScore, nomActiveChara, damage, hitCharacter);
+                    console.log("Nombre de heros morts : " + deadHeroScore);
 
-            // stoppe le jeu en cas de victoire, ou relance un nouveau tour
-            stopTheGame(deadMobScore, deadHeroScore);
+                    // verification si defaite        
+                    gameOver(contenuBoiteDialogue, deadHeroScore);
+
+                    // stoppe le jeu en cas de victoire, ou relance un nouveau tour
+                    stopTheGame(deadMobScore, deadHeroScore);}, 2000);
+                }
+
+                // Si monstre non brule, on passe direct à la suite
+                else if (fireState == 0){
+
+                    // Application de la valeur de gel au monstre qui attaque
+                    iceState = pickIce(nomActiveChara, iceList);
+
+                    // Application de la valeur de defense au heros cible.
+                    victimDef = pickShield(hitCharacter, heroesDef);
+
+                    // verification si le perso cible a une defense. Si non, enclenche une attaque.
+                    examStates(nomActiveChara, hitCharacter, iceState, victimDef, contenuBoiteDialogue);
+                    
+                    // verification si hero mort
+                    deadHeroScore = checkDeathCharacter(contenuBoiteDialogue, vieVictim, deadHeroScore, nomActiveChara, damage, hitCharacter);
+                    console.log("Nombre de heros morts : " + deadHeroScore);
+
+                    // verification si defaite        
+                    gameOver(contenuBoiteDialogue, deadHeroScore);
+
+                    // stoppe le jeu en cas de victoire, ou relance un nouveau tour
+                    stopTheGame(deadMobScore, deadHeroScore);
+                }}, 1000);
         }
 
         // Verifie si le monstre est gele, puis si la cible possede un bouclier avant de lancer une attaque
@@ -1436,27 +1574,37 @@
             }
         }
         
-        // Si monstre brulé, applique des dgts de brulure
-        function burn(effetFeu)
-        {
-            if (effetFeu > 0){
-                //random de dgt
-                damage = getRandomInt(5);
+        // Applique des dgts de brulure
+        function burn(message){
+            //random de dgt
+            damage = getRandomInt(5);
 
-                // application des dgts
-                attack(damage, vieActiveChara);
-                console.log(nomActiveChara + " brule de " + damage);
+            // application des dgts
+            attack(damage, vieActiveChara);
+            message.innerHTML = nomActiveChara + " subit " + damage + " points de brûlures !";
 
-                //animation dgt de brulure
-                animActiveChara.setAttribute("src", "images/hit"+nomActiveChara+".gif");
+            //animation dgt de brulure
+            animActiveChara.setAttribute("src", "images/hit"+nomActiveChara+".gif");
 
-                //attaquant iddle et defenseur hit
+            //attaquant iddle et defenseur hit
+            
+            if(nomActiveChara == "Champignon"){
                 setTimeout(function() {
-                    animActiveChara.setAttribute("src", "images/idle"+nomActiveChara+".gif");}, 1000);
-
-                // Retrait d'1 en cooldown
-                fireCooldown = lessFireCooldown(nomActiveChara, fireCooldown); 
+                    animActiveChara.setAttribute("src", "images/idle"+nomActiveChara+".gif");}, 550);
             }
+
+            if(nomActiveChara == "Sanglier"){
+                setTimeout(function() {
+                    animActiveChara.setAttribute("src", "images/idle"+nomActiveChara+".gif");}, 750);
+            }
+
+            if(nomActiveChara == "Geant"){
+                setTimeout(function() {
+                    animActiveChara.setAttribute("src", "images/idle"+nomActiveChara+".gif");}, 750);
+            }
+
+            // Retrait d'1 en cooldown
+            fireCooldown = lessFireCooldown(nomActiveChara, fireCooldown);
         }
 
         // Declenche l'attaque du monstre
@@ -1499,6 +1647,8 @@ indicArcher = document.getElementById("indicateurArcher");
 indicMage = document.getElementById("indicateurMage");
 indicGuerrier = document.getElementById("indicateurGuerrier");
 indicAssassin = document.getElementById("indicateurAssassin");
+
+textPouvoir = document.getElementById("infosPouvoir");
 
 
 imageBoiteDialogue = document.getElementById("imagePersoActif");
@@ -1651,10 +1801,21 @@ boutonDefense.onmouseout = function()
 boutonPouvoir.onmouseover = function()
 {
     infosPouvoir.style.visibility = "visible";
+    if (turn == 1){
+        textPouvoir.innerHTML = "L'archer tire une flèche de givre, bloquant un ennemi au prochain tour.";
+    }
+    if (turn == 2){
+        textPouvoir.innerHTML = "Le mage lance une boule de feu, brûlant un ennemi durant les deux prochains tours.";
+    }
+    if (turn == 3){
+        textPouvoir.innerHTML = "Le guerrier déploie son bouclier pour appliquer la défense à l'ensemble du groupe.";
+    }
+    if (turn == 4){
+        textPouvoir.innerHTML = "L'assassin charge sa rapière en magie, pour blesser tous les ennemis en même temps.";
+    }
 }
 
 boutonPouvoir.onmouseout = function()
 {
     infosPouvoir.style.visibility = "hidden";
 }
-
